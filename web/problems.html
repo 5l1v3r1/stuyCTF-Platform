@@ -47,11 +47,13 @@ startup_functions:
         <div class="problem-header panel-heading" data-toggle="collapse" data-target="#<%- problem.pid %>">
             <h4 class="panel-title">
                 <%- panel.title %>
+                <div class="pull-right">
                 <% if (panel.status) { %>
-                    <div class="pull-right"><span style='color:green'>Solved</span></div>
+                    <span style='color:green'>Solved</span>
                 <% } else { %>
-                    <div class="pull-right"><span style='color:red'>Unsolved</span></div>
+                    <span style='color:red'>Unsolved</span>
                 <% } %>
+                </div>
             </h4>
         </div>
 
