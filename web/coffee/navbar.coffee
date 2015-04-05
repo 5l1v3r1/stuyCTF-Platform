@@ -44,7 +44,6 @@ userLoggedInNoCompetition =
     Manage: "/account"
     Logout: "#"
 
-
 userNotLoggedIn =
   About: "/about"
   News: "/news"

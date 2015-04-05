@@ -18,8 +18,8 @@ setRequired = ->
 
 checkEligibility = ->
     is_us = $("#country-select").val() in ["US", ""]
-    is_k12 = $("#background-select").val() in ["student_el", "student_ms", "student_hs", "student_home"]
-    is_student = $("#background-select").val() in ["student_el", "student_ms", "student_hs", "student_home", "student_undergrad", "student_grad"]
+    is_k12 = $("#background-select").val() in ["student_prehs", "student_hs"]
+    is_student = $("#background-select").val() in ["student_prehs", "student_hs"]
     is_teacher = $("#background-select").val() == "teacher"
 
     # This should be changed to reflect your eligibility requirements
