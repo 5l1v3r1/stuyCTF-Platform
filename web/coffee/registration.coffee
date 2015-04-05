@@ -50,15 +50,15 @@ submitRegistration = (e) ->
   registrationData["create-new-teacher"] = creatingTeacherAccount
 
   if creatingNewTeam
-    registrationData["ctf-emails"] = $("#checkbox-emails-create").is(':checked')
+    registrationData["ctf-emails"] = false
     submitButton = "#register-button-create"
     logType = "NewTeam"
   else if creatingTeacherAccount
-    registrationData["ctf-emails"] = $("#checkbox-emails-teacher").is(':checked')
+    registrationData["ctf-emails"] = false
     submitButton = "#register-button-teacher"
     logType = "NewTeacher"
   else
-    registrationData["ctf-emails"] = $("#checkbox-emails-existing").is(':checked')
+    registrationData["ctf-emails"] = false
     submitButton = "#register-button-existing"
     logType = "JoinTeam"
 
