@@ -1,0 +1,11 @@
+
+{
+    "name": "Impossible",
+    "score": 0,
+    "category": "",
+    "grader": "./Impossible/grader.py",
+    "description": "impossible<br><br>This is impossible.<br>",
+    "threshold": 0,
+    "weightmap": {},
+    "hint": ""
+}
