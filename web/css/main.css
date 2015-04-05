@@ -187,6 +187,13 @@ img.logo-landscape {
     text-align: center;
 }
 
+.unsolved {
+    color: red;
+}
+
+.solved {
+    color: green;
+}
 /* Style for charts that are disabled before the competition */
 
 .faded-chart {
