@@ -31,7 +31,7 @@ startup_functions:
     className: problem.solved ? "solved" : "",
     collapseClass: problem.solved ? "" : "in",
     title: problem.name + " - " + problem.score,
-    status: problem.solved ? "Solved" : "Unsolved"
+    status: problem.solved
     };
 
     var pill = {
@@ -47,7 +47,11 @@ startup_functions:
         <div class="problem-header panel-heading" data-toggle="collapse" data-target="#<%- problem.pid %>">
             <h4 class="panel-title">
                 <%- panel.title %>
-                <div class="pull-right"><%- problem.category %> - <%- panel.status %></div>
+                <% if (panel.status) { %>
+                    <div class="pull-right"><span style='color:green'>Solved</span></div>
+                <% } else { %>
+                    <div class="pull-right"><span style='color:red'>Unsolved</span></div>
+                <% } %>
             </h4>
         </div>
 
