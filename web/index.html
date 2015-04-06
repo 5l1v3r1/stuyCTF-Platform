@@ -29,7 +29,7 @@ startup_functions:
 <script>
 function backgroundTrianglify() {
     var t = new Trianglify({
-        cellsize: (window).width() * .15
+        cellsize: $(window).width() * .15
     });
     var pattern = t.generate($(window).width(), $(window).width()*.6);
     $('.logo-wrapper').css('background-image', pattern.dataUrl);
