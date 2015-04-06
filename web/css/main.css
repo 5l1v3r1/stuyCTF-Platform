@@ -38,35 +38,6 @@ a.navbar-brand {
     max-width: 250px;
 }
 
-.logo-wrapper {
-    position: relative;
-    height: 60%;
-    overflow: hidden;
-}
-
-.logo-background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: .6;
-}
-
-.logo {
-    position: relative;
-    text-align: center;
-    font-size: 100px;
-    padding: 150px 0;
-    opacity: 1;
-}
-
-@media (max-width: 767px) {
-    .logo {
-        font-size: 60px;
-        padding: 100px 0;
-    }
-}
-
 .button-column {
     padding-left: 0px;
     padding-right: 0px;
@@ -202,9 +173,69 @@ img.logo-landscape {
     color: green;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .logo-column-item {
         margin-bottom: 30px;
+    }
+}
+
+/* Front Page */
+
+.logo-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: .6;
+}
+
+.logo {
+    position: relative;
+    padding: 100px;
+    text-align: center;
+    font-size: 100px;
+    line-height: 1;
+    opacity: 1;
+}
+
+.logo-date {
+    font-size: 40%;
+}
+
+@media (max-width: 991px) {
+    .logo {
+        padding: 70px 0;
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .logo {
+        padding: 50px 0;
+        font-size: 60px;
+    }
+}
+
+.registration-header {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.registration-divider {
+    width: 50%;
+    margin-left: 25%;
+}
+
+@media (min-width: 992px) {
+    #user-registration-form {
+        padding: 0 5%;
     }
 }
 
@@ -244,12 +275,6 @@ img.logo-landscape {
     background: -ms-linear-gradient(top, rgba(209,209,209,0) 0%, rgba(255,255,255,1) 100%);
     background: linear-gradient(to bottom, rgba(209,209,209,0) 0%, rgba(255,255,255,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1d1d1', endColorstr='#ffffff', GradientType=0 );
-}
-
-/* Registration */
-
-#user-registration-form {
-	padding: 0 5%;
 }
 
 /* Panels */

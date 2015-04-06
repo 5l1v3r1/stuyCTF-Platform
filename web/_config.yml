@@ -9,3 +9,6 @@ mode: development # set to production to enable analytics
 # Build settings
 markdown: kramdown
 permalink: none
+
+start_time: Month Day, Year
+end_time: Month Day, Year

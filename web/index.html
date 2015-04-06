@@ -14,13 +14,16 @@ startup_functions:
 <div class="logo-wrapper">
     <div class="logo-background"></div>
     <div class="logo">
-        <span style="color:#008cba;">stuy</span><span style="color:#FF4136;">CTF</span> <span style="color:#008cba;">2015</span>
+        <span style="color:#0074D9;">stuy</span><span style="color:#FF4136;">CTF</span>
+        <br>
+        <span class="logo-date">{{ site.start_time }} - {{ site.end_time }}</span>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div id="registration" class="col-md-12">
-            <h2>Register Now!</h2>
+            <h2 class="registration-header">Register Now!</h2>
+            <hr class="registration-divider">
             {% include registration-index.html %}
         </div>
     </div>
@@ -31,7 +34,7 @@ function backgroundTrianglify() {
     var t = new Trianglify({
         cellsize: $(window).width() * .15
     });
-    var pattern = t.generate($(window).width(), $(window).width()*.6);
+    var pattern = t.generate($('.logo-wrapper').width(), $('.logo-wrapper').height());
     $('.logo-wrapper').css('background-image', pattern.dataUrl);
 }
 $(document).ready(backgroundTrianglify);
