@@ -239,6 +239,11 @@ img.logo-landscape {
     }
 }
 
+#registration-btns .btn {
+    float: none;
+    margin-top: 10px;
+}
+
 /* Style for charts that are disabled before the competition */
 
 .faded-chart {
