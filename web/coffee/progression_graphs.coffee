@@ -9,7 +9,10 @@ topTeamsGraphOptions = {
     position: "top"
   },
   vAxis: {
-    title: "Score"
+    title: "Score",
+    viewWindow: {
+      min: 0.0
+    }
   },
   hAxis: {
     ticks: []
@@ -25,7 +28,10 @@ teamGraphOptions = {
     position: "none"
   },
   vAxis: {
-    title: "Score"
+    title: "Score",
+    viewWindow: {
+      min: 0.0
+    }
   },
   hAxis: {
     ticks: []
@@ -71,8 +77,12 @@ progressionDataToPoints = (data, dataPoints, currentDate = 0) ->
   sortedData = _.sortBy _.flatten(data), (submission) ->
     return submission.time
 
-  min = _.first(sortedData).time - 60*5
-  lastTime = _.last(sortedData).time
+  if sortedData.length > 0
+    min = _.first(sortedData).time - 60*5
+    lastTime = _.last(sortedData).time
+  else
+    min = currentDate
+    lastTime = currentDate
   max = if currentDate is 0 then lastTime else Math.min(lastTime + 3600*24, currentDate)
   bucketWindow = Math.max(Math.floor((max - min) / dataPoints), 1)
 
