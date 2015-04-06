@@ -38,8 +38,33 @@ a.navbar-brand {
     max-width: 250px;
 }
 
-.header-logo {
+.logo-wrapper {
+    position: relative;
+    height: 60%;
+    overflow: hidden;
+}
+
+.logo-background {
+    position: absolute;
+    width: 100%;
     height: 100%;
+    background-color: #fff;
+    opacity: .6;
+}
+
+.logo {
+    position: relative;
+    text-align: center;
+    font-size: 100px;
+    padding: 150px 0;
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .logo {
+        font-size: 60px;
+        padding: 100px 0;
+    }
 }
 
 .button-column {

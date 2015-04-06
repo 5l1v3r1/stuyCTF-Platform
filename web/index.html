@@ -2,16 +2,38 @@
 layout: default
 title: Homepage
 title_label: hide
+pre_scripts:
+ - http://d3js.org/d3.v3.min.js
+ - /js/libs/trianglify.min.js
 post_scripts:
-- /js/registration.js
+ - /js/registration.js
 startup_functions:
+ - hideRegistrationIfLoggedIn()
 ---
 
+<div class="logo-wrapper">
+    <div class="logo-background"></div>
+    <div class="logo">
+        <span style="color:#008cba;">stuy</span><span style="color:#FF4136;">CTF</span> <span style="color:#008cba;">2015</span>
+    </div>
+</div>
 <div class="container">
-    <div class="row">        
+    <div class="row">
         <div id="registration" class="col-md-12">
             <h2>Register Now!</h2>
             {% include registration-index.html %}
         </div>
     </div>
 </div>
+
+<script>
+function backgroundTrianglify() {
+    var t = new Trianglify({
+        cellsize: (window).width() * .15
+    });
+    var pattern = t.generate($(window).width(), $(window).width()*.6);
+    $('.logo-wrapper').css('background-image', pattern.dataUrl);
+}
+$(document).ready(backgroundTrianglify);
+$(window).resize(backgroundTrianglify);
+</script>
