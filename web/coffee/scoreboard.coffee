@@ -11,7 +11,8 @@ load_teamscore = ->
           teamscore: resp.data.score
         })
       when 0
-        apiNotify(data)
+        if resp.message != "You must be logged in"
+          apiNotify(resp)
 
 load_scoreboard = ->
   apiCall "GET", "/api/stats/scoreboard", {}
