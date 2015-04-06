@@ -1,16 +1,11 @@
-picoCTF-Platform 2
+stuyCTF Platform
 ==============
 
-The picoCTF Platform 2 is the infrastructure on which picoCTF runs. The 
-platform is designed to be easily adapted to other CTF or programming 
-competitions.
+The stuyCTF Platform is a modified version of [picoCTF Platform 2](https://github.com/picoCTF/picoCTF-Platform-2) for running the stuyCTF competition.
 
-picoCTF Platform 2 targets Ubuntu 14.04 LTS but should work on just about 
-any "standard" Linux distribution. It would probably even work on 
-Windows. MongoDB must be installed; all default configurations should 
-work.
+stuyCTF targets Ubuntu 14.04 LTS but should work on just about any "standard" Linux distribution. It would probably even work on Windows. MongoDB must be installed; all default configurations should work.
 
-Setting Up
+Setting Up The Development Environment
 ------------
 1. Download VirtualBox (easiest, though others can work)
 2. Download Vagrant (vagrantup.com)
@@ -24,12 +19,10 @@ Setting Up
 *Note*: The competition has two modes: competition active and competition inactive. In inactive mode, there are no problems and only registration is available. To change what mode the competition is in, edit api/api/config.py and change the competition dates such that the current date is either inside or outside the range of the competition dates.
 
 
-Loading the Example Problems (In the vagrant VM)
+Loading Problems
 ------------
-1. Run `cd ~/api`
-2. Run `python3 api_manager.py -v problems load /vagrant/example_problems/ graders/ ../problem_static/`
-3. Run `python3 api_manager.py autogen build 100`
-4. Run `devploy`
+1. Create problems in the /vagrant/problems/ directory, following the format below
+4. Run `reload_problems.sh`
 
 
 Creating Problems
@@ -77,22 +70,3 @@ To run the tests:
 3. To be able to import the API, `cd api` and run the tests with `./run_tests.sh`
  
 All tests should pass with your changes.
-
-
-Contact
-------------
-
-We are happy to help but no support is guaranteed.
-
-Authors: Jonathan Burket, Tim Becker, Chris Ganas
-
-Copyright: Carnegie Mellon University
-
-License: MIT
-
-Maintainers: Peter Chapman, Jonathan Burket
-
-Credits: David Brumley, Tim Becker, Chris Ganas, Peter Chapman, Jonathan Burket
-
-Email: peter@cmu.edu, jburket@cmu.edu
-
