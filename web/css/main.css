@@ -1,4 +1,3 @@
-
 #main-content {
     min-height: 35vh;
 }
@@ -187,13 +186,14 @@ img.logo-landscape {
     text-align: center;
 }
 
-.unsolved {
+.problem .solve-status {
     color: red;
 }
 
-.solved {
+.problem.solved .solve-status {
     color: green;
 }
+
 /* Style for charts that are disabled before the competition */
 
 .faded-chart {

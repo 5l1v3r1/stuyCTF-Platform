@@ -48,11 +48,8 @@ startup_functions:
             <h4 class="panel-title">
                 <%- panel.title %>
                 <div class="pull-right">
-                <% if (panel.status) { %>
-                    <span class='solved'>Solved</span>
-                <% } else { %>
-                    <span class='unsolved'>Unsolved</span>
-                <% } %>
+                    <span class="solve-status">
+                    <% if (panel.status) { %> Solved <% } else { %> Unsolved <% } %>
                 </div>
             </h4>
         </div>
