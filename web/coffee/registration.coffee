@@ -1,3 +1,11 @@
+@hideRegistrationIfLoggedIn = ->
+  apiCall "GET", "/api/user/status", {}
+  .done (data) ->
+    switch data["status"]
+      when 1
+        if data.data["logged_in"]
+          $('#registration').hide()
+
 recaptchaPublicKey = ""
 
 reloadCaptcha = ->
