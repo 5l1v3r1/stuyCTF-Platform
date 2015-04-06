@@ -125,6 +125,10 @@ progressionDataToPoints = (data, dataPoints, currentDate = 0) ->
 
           chart = new google.visualization.SteppedAreaChart(div)
           chart.draw(packagedData, topTeamsGraphOptions)
+        else
+          $(selector).height(0)
+      else
+        $(selector).height(0)
 
 @drawTeamProgressionGraph = (selector, container_selector) ->
   div = divFromSelector selector
