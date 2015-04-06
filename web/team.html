@@ -12,18 +12,22 @@ startup_functions:
   <div class="row">
     <div class="col-md-6">
       <div id="team-info"></div>
-      <div class="panel panel-default" id="team-progression-graph-container" >
-          <div class="panel-heading">
-             <h3 class="panel-title">Team Score Progression</h3>
-          </div>
-          <div class="panel-body team-panel-body">
-             <div id="team-progression-graph"></div>
-          </div>
-      </div>
     </div>
     <div class="col-md-6">
       <div id="group-info"></div>
-      <div id="achievement-info"></div>
+      <!--<div id="achievement-info"></div>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default" id="team-progression-graph-container" >
+        <div class="panel-heading">
+           <h3 class="panel-title">Team Score Progression</h3>
+        </div>
+        <div class="panel-body team-panel-body">
+          <div id="team-progression-graph"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -57,14 +61,15 @@ startup_functions:
     <% } %>
 
     <div class="panel-body team-panel-body">
+      <p>If your teacher has created a classroom for your class, please input the information that has been provided to you to join.</p>
       <form role="form" class="form-inline" id="group-request-form" type="submit">
         <div class="form-group">
             <label class="sr-only" for="group-name-input">Class Name</label>
-            <input type="text" class="form-control class-class-name" id="group-name-input" placeholder="Class Name">
+            <input type="text" class="form-control class-class-name col-md-5" id="group-name-input" placeholder="Class Name">
         </div>
         <div class="form-group">
             <label class="sr-only" for="group-owner-input">Teacher</label>
-            <input type="text" class="form-control class-teacher-username" id="group-owner-input" placeholder="Teacher Username">
+            <input type="text" class="form-control class-teacher-username col-md-5" id="group-owner-input" placeholder="Teacher Username">
         </div>
         <button class="btn btn-primary" id="join-group">Join</button>
       </div>
@@ -101,6 +106,7 @@ startup_functions:
   </div>
 </script>
 
+<!--
 <script type="text/template" id="achievement-info-template">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -126,6 +132,7 @@ startup_functions:
     </div>
   </div>
 </script>
+-->
 
 <script language="javascript">
     $(window).load(function() {
