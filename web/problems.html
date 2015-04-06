@@ -31,7 +31,7 @@ startup_functions:
     className: problem.solved ? "solved" : "",
     collapseClass: problem.solved ? "" : "in",
     title: problem.name + " - " + problem.score,
-    status: problem.solved
+    status: problem.solved ? "Solved" : "Unsolved"
     };
 
     var pill = {
@@ -48,8 +48,9 @@ startup_functions:
             <h4 class="panel-title">
                 <%- panel.title %>
                 <div class="pull-right">
-                    <span class="solve-status">
-                    <% if (panel.status) { %> Solved <% } else { %> Unsolved <% } %>
+                    <span class="<%= panel.status %>">
+                    <%= panel.status %>
+                    </span>
                 </div>
             </h4>
         </div>

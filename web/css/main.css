@@ -186,11 +186,11 @@ img.logo-landscape {
     text-align: center;
 }
 
-.problem .solve-status {
+.Unsolved {
     color: red;
 }
 
-.problem.solved .solve-status {
+.Solved {
     color: green;
 }
 
