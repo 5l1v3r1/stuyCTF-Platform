@@ -16,12 +16,12 @@ api.app.session_cookie_path = "/"
 api.app.session_cookie_name = "flask"
 
 # KEEP THIS SECRET
-api.app.secret_key = "5XVbne3AjPH35eEH8yQI"
+api.app.secret_key = "MuchSecretSuchSecret"
 
 """ SECURITY """
 
 api.common.allowed_protocols = ["https", "http"]
-api.common.allowed_ports = [8080]
+api.common.allowed_ports = [80, 8080]
 
 """ MONGO """
 
@@ -41,7 +41,7 @@ enable_teachers = True
 enable_feedback = True
 
 competition_name = "stuyCTF"
-competition_urls = ["127.0.0.1:8080"]
+competition_urls = ["stuyctf.me"]
 
 # Max users on any given team
 api.team.max_team_users = 5
@@ -60,8 +60,8 @@ class EST(datetime.tzinfo):
     def dst(self, dt):
         return datetime.timedelta(0)
 
-start_time = datetime.datetime(2000, 10, 27, 12, 13, 0, tzinfo=EST(4))
-end_time = datetime.datetime(2055, 11, 7, 23, 59, 59, tzinfo=EST(5))
+start_time = datetime.datetime(2015, 4, 11, 10, 0, 0, tzinfo=EST(4))
+end_time = datetime.datetime(2015, 4, 20, 22, 00, 00, tzinfo=EST(5))
 
 # Root directory of all problem graders
 api.problem.grader_base_path = "./graders"
