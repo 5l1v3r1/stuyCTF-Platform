@@ -94,28 +94,13 @@ startup_functions:
 <script type="text/template" id="problem-submit-template">
     <p class="problem-description">
         <%= problem.description %>
-    <div class="row">
-        <div class="col-md-11">
-            <% if(problem.hint) { %>
-            <em class="problem-hint pull-left" id="<%= problem.pid %>-hint">
-                <strong><h4>Hint:</h4></strong>
-                <%= problem.hint %>
-            </em>
-            <% } %>
-        </div>
-        <div class="col-md-1">
-            <% if(problem.hint && false) { %>
-            <span data-pid="<%= problem.pid %>" class="glyphicon glyphicon-info-sign info-span pull-right"></span>
-            <% } %>
-        </div>
-    </div>
     </p>
     <div class="row">
         <form class="problem-submit">
             <div class="input-group input-group-sm">
-        <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit">Submit!</button>
-        </span>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Submit!</button>
+                </span>
                 <input type="text" data-pid="<%- problem.pid %>" class="form-control">
             </div>
         </form>
