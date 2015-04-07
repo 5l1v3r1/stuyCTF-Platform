@@ -11,7 +11,7 @@ import api.app
 
 """ FLASK """
 
-api.app.session_cookie_domain = "127.0.0.1"
+api.app.session_cookie_domain = None # don't set this value if you want this to work on any domain
 api.app.session_cookie_path = "/"
 api.app.session_cookie_name = "flask"
 
