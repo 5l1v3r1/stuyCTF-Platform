@@ -3,7 +3,7 @@
 # A message is also required to be returned along with the boolean
 #     Custom messages such as `return False, "OOOFFF SO CLOSE"` can be used
 
-flag = "2250347"
+flag = "stuyctf{wiki_pages_are_helpful}"
 
 def grade(arg, key):
     if key == flag:
