@@ -13,7 +13,7 @@ Welcome to stuyCTF! This is a CTF competition made by students of Stuyvesant Hig
    Presumably for beginners.... I have no idea.  
 
 3. *Who made this thing?*  
-   Danny Qiu, Chesley Tan, Ethan Cheng, and Yicheng Wang.  
+   Danny Qiu, Chesley Tan, Ethan Cheng, Yicheng Wang, and Daniel Zabari.
    Moral supporters were Ishraq Bhuiyan and Richard Zhan.  
 
 4. *Why is the about page almost completely empty?*  
