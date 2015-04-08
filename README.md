@@ -14,15 +14,15 @@ Setting Up The Development Environment
 5. `vagrant ssh` to connect to the VM
 6. Run `devploy` to deploy the development version of the site
 7. Go to port 8080 on the Host Machine
-8. Remember to always use 127.0.0.1:8080 not localhost:8080
 
 *Note*: The competition has two modes: competition active and competition inactive. In inactive mode, there are no problems and only registration is available. To change what mode the competition is in, edit api/api/config.py and change the competition dates such that the current date is either inside or outside the range of the competition dates.
 
 
 Loading Problems
 ------------
-1. Create problems in the /vagrant/problems/ directory, following the format below
-4. Run `reload_problems.sh`
+1. Clone a copy of https://github.com/stuyCTF/stuyctf into the same parent directory of this
+2. Follow instructions to create and deploy problems in the stuyctf repository
+3. Run `reload_problems.sh`
 
 
 Creating Problems
