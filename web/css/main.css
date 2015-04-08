@@ -244,6 +244,10 @@ img.logo-landscape {
     margin-top: 10px;
 }
 
+.register-btn {
+    text-align: center;
+}
+
 /* Style for charts that are disabled before the competition */
 
 .faded-chart {
