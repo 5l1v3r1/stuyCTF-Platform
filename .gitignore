@@ -1,5 +1,3 @@
-*.pyc
-*.project
 .idea
 .vagrant
 web/js/*.js
@@ -8,4 +6,48 @@ web/_site/
 web/_includes/analytics.html
 api/graders/autogentest/instances/*
 api/graders/*
+
+problems/*
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Text Backup Files #
+*.s[a-w][a-z]
 *~
+\#*\#
+.\#*
+
+# OS X Files #
+.DS_Store
+._*
+.Spotlight*
+.Trashes
+
+# Windows Files #
+Thumbs.db
+ehthumbs.db
+
+a.out
+*.project
+*.class
+*.pyc
