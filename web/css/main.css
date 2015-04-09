@@ -204,6 +204,16 @@ img.logo-landscape {
     text-align: center;
 }
 
+@media (min-width: 992px) {
+    .form-inline .class-class-name {
+        width: 160px;
+    }
+
+    .form-inline .class-teacher-username {
+        width: 160px;
+    }
+}
+
 .Unsolved {
     color: red;
 }
