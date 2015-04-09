@@ -55,7 +55,7 @@ a.navbar-brand {
 
 #main-content h1, #main-content h2, #main-content h3,
 #main-content h4, #main-content h5, #main-content h6 {
-    color: #000000;
+    color: #007196;
     font-weight: 500;
 }
 
@@ -79,6 +79,34 @@ img.logo {
 	margin: auto;
 }
 
+#problem-categories {
+    margin-top: 20px;
+}
+
+#problem-categories > div {
+    padding: 10px 0;
+    border-left: 1px solid #ddd;
+}
+
+#problem-categories > div:first-child {
+    border: none;
+}
+
+@media (max-width: 991px) {
+    #problem-categories > div:first-child, #problem-categories > div:nth-child(2) {
+        border-bottom: 1px solid #ddd;
+    }
+    #problem-categories > div:nth-child(3) {
+        border: none;
+    }
+}
+
+#problem-categories .icon {
+    padding: 20px 10px 30px;
+    font-size: 60px;
+    color: #007196;
+}
+
 .game-image-item, .logo-column-item {
     text-align: center;
     vertical-align: middle;
@@ -90,12 +118,12 @@ img.logo-landscape {
 }
 
 .home-section {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .wrap-pattern {
-	background-color: #161415;
-	border-bottom: none;
+    background-color: #161415;
+    border-bottom: none;
 }
 
 .team-visualization-enabler {
@@ -338,11 +366,6 @@ img.logo-landscape {
 }
 
 /* Utilities */
-
-.lead {
-   color: #000000;
-   font-weight: 500;
-}
 
 .hidden-page {
     display: none;
