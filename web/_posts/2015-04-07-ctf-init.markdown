@@ -9,12 +9,5 @@ Welcome to stuyCTF! This is a CTF competition made by students of Stuyvesant Hig
 1. *Why is your logo plaintext with colors?*  
    Because we were too lazy.  
 
-2. *What is the difficulty range for this contest?*  
-   Presumably for beginners.... I have no idea.  
-
-3. *Who made this thing?*  
-   Danny Qiu, Chesley Tan, Ethan Cheng, Yicheng Wang, and Daniel Zabari.
-   Moral supporters were Ishraq Bhuiyan and Richard Zhan.  
-
-4. *Why is the about page almost completely empty?*  
+2. *Why is the about page almost completely empty?*  
    Because this is a pretty cool CTF. Also, `goto 1;`  

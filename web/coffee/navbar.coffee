@@ -1,5 +1,6 @@
 apiOffline =
   About: "/about"
+  FAQ: "/faq"
   News: "/news"
 
 teacherLoggedIn =
@@ -8,6 +9,7 @@ teacherLoggedIn =
   Classroom: "/classroom"
   About:
     About: "/about"
+    FAQ: "/faq"
     News: "/news"
   Account:
     Manage: "/account"
@@ -16,6 +18,7 @@ teacherLoggedIn =
 teacherLoggedInNoCompetition =
   Classroom: "/classroom"
   About: "/about"
+  FAQ: "/faq"
   News: "/news"
   Account:
     Manage: "/account"
@@ -28,6 +31,7 @@ userLoggedIn =
   Scoreboard: "/scoreboard"
   About:
     About: "/about"
+    FAQ: "/faq"
     News: "/news"
   Account:
     Manage: "/account"
@@ -39,6 +43,7 @@ userLoggedInNoCompetition =
   Scoreboard: "/scoreboard"
   About:  
     About: "/about"
+    FAQ: "/faq"
     News: "/news"
   Account:
     Manage: "/account"
@@ -46,6 +51,7 @@ userLoggedInNoCompetition =
 
 userNotLoggedIn =
   About: "/about"
+  FAQ: "/faq"
   News: "/news"
   Scoreboard: "/scoreboard"
   Login: "/login"
