@@ -10,6 +10,7 @@ from api.common import validate, check, safe_fail, InternalException, SevereInte
 from voluptuous import Schema, Length, Required, Range
 from bson import json_util
 from os.path import join, isfile
+from collections import Counter
 
 from api.annotations import log_action
 
@@ -596,14 +597,10 @@ def get_all_problem_solves():
     db = api.common.get_conn()
     match = {'correct': True}
     correct_submissions = db.submissions.find(match, {"_id":0})
-    solves = {}
+    solves = Counter()
     for submission in correct_submissions:
-        if submission["pid"] in solves:
-            solves[submission["pid"]] += 1
-        else:
-            solves[submission["pid"]] = 1
-    print(solves)
-    return solves
+        solves[submission["pid"]] += 1
+    return dict(solves)
 
 @api.cache.memoize()
 def get_solved_pids(tid=None, uid=None, category=None):
