@@ -73,7 +73,7 @@ def get_group_average_score(gid=None, name=None):
     return int(total_score / len(group_scores)) if len(group_scores) > 0 else 0
 
 # Stored by the cache_stats daemon
-@api.cache.memoize()
+@api.cache.memoize(timeout=30, fast=True)
 def get_all_team_scores():
     """
     Gets the score for every team in the database.

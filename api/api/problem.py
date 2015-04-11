@@ -363,6 +363,7 @@ def submit_key(tid, pid, key, uid=None, ip=None):
         api.cache.invalidate_memoization(api.stats.get_score, {"kwargs.tid":tid}, {"kwargs.uid":uid})
         api.cache.invalidate_memoization(get_unlocked_pids, {"args":tid})
         api.cache.invalidate_memoization(get_solved_pids, {"kwargs.tid":tid}, {"kwargs.uid":uid})
+        api.cache.invalidate_memoization(get_all_problem_solves, {})
 
         api.cache.invalidate_memoization(api.stats.get_score_progression, {"kwargs.tid":tid}, {"kwargs.uid":uid})
 
@@ -588,6 +589,23 @@ def get_all_problems(category=None, show_disabled=False):
     return list(db.problems.find(match, {"_id":0}).sort('score', pymongo.ASCENDING))
 
 @api.cache.memoize()
+def get_all_problem_solves():
+    """
+    Gets the number of solves for all problems
+    """
+    db = api.common.get_conn()
+    match = {'correct': True}
+    correct_submissions = db.submissions.find(match, {"_id":0})
+    solves = {}
+    for submission in correct_submissions:
+        if submission["pid"] in solves:
+            solves[submission["pid"]] += 1
+        else:
+            solves[submission["pid"]] = 1
+    print(solves)
+    return solves
+
+@api.cache.memoize()
 def get_solved_pids(tid=None, uid=None, category=None):
     """
     Gets the solved pids for a given team or user.
@@ -650,10 +668,12 @@ def get_unlocked_problems(tid, category=None):
         List of unlocked problem dictionaries
     """
 
+    solves = get_all_problem_solves()
     solved = get_solved_problems(tid=tid)
     unlocked = [get_problem(pid=pid) for pid in get_unlocked_pids(tid, category=category)]
     for problem in unlocked:
         if api.autogen.is_autogen_problem(problem["pid"]):
             problem.update(api.autogen.get_problem_instance(problem["pid"], tid))
         problem['solved'] = problem in solved
+        problem['solves'] = solves[problem["pid"]] if problem["pid"] in solves else 0
     return unlocked

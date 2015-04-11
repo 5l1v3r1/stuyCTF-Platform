@@ -10,7 +10,7 @@ import time
 
 log = api.logger.use(__name__)
 
-no_cache = True
+no_cache = False
 fast_cache = {}
 _mongo_index = None
 

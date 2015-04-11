@@ -31,6 +31,7 @@ startup_functions:
     className: problem.solved ? "solved" : "",
     collapseClass: problem.solved ? "" : "in",
     title: problem.name + " - " + problem.score,
+    solves: problem.solves,
     status: problem.solved ? "Solved" : "Unsolved",
     category: problem.category == "" ? "Miscellaneous" : problem.category
     };
@@ -47,6 +48,7 @@ startup_functions:
     <div class="problem <%= panel.className %> panel panel-default">
         <div class="problem-header panel-heading" data-toggle="collapse" data-target="#<%- problem.pid %>">
             <h4 class="panel-title">
+                <span class="label label-info label-solves"><%= panel.solves %> solves</span>
                 <%- panel.title %>
                 <div class="pull-right">
                     <%= panel.category %> - 
