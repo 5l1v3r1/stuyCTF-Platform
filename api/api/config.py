@@ -61,7 +61,7 @@ class EST(datetime.tzinfo):
         return datetime.timedelta(0)
 
 start_time = datetime.datetime(2015, 4, 11, 10, 0, 0, tzinfo=EST(4))
-end_time = datetime.datetime(2015, 4, 20, 22, 00, 00, tzinfo=EST(5))
+end_time = datetime.datetime(2015, 4, 20, 22, 00, 00, tzinfo=EST(4))
 
 # Root directory of all problem graders
 api.problem.grader_base_path = "./graders"
@@ -90,12 +90,12 @@ shell_user_creation = "sudo useradd -m {username} -p {password}"
 
 """ EMAIL (SMTP) """
 
-api.utilities.enable_email = False
-api.utilities.smtp_url = ""
-api.utilities.email_username = ""
-api.utilities.email_password = ""
-api.utilities.from_addr = ""
-api.utilities.from_name = ""
+api.utilities.enable_email = True
+api.utilities.smtp_url = "smtp.sendgrid.net"
+api.utilities.email_username = "dqiu"
+api.utilities.email_password = "stuyctf"
+api.utilities.from_addr = "contact@stuyctf.me"
+api.utilities.from_name = "stuyCTF Team"
 
 """ CAPTCHA """
 enable_captcha = False
