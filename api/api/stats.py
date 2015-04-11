@@ -215,7 +215,7 @@ def get_top_teams():
     return all_teams if len(all_teams) < top_teams else all_teams[:top_teams]
 
 # Stored by the cache_stats daemon
-@api.cache.memoize()
+@api.cache.memoize(timeout=60, fast=True)
 def get_top_teams_score_progressions():
     """
     Gets the score_progressions for the top teams
