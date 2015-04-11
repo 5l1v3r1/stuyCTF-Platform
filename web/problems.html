@@ -48,7 +48,7 @@ startup_functions:
     <div class="problem <%= panel.className %> panel panel-default">
         <div class="problem-header panel-heading" data-toggle="collapse" data-target="#<%- problem.pid %>">
             <h4 class="panel-title">
-                <span class="label label-info label-solves"><%= panel.solves %> solves</span>
+                <span class="label label-info label-solves"><%= panel.solves %> <%= panel.solves == 1 ? "solve" : "solves" %></span>
                 <%- panel.title %>
                 <div class="pull-right">
                     <%= panel.category %> - 
