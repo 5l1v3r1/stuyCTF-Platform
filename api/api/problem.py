@@ -604,6 +604,7 @@ def get_all_problem_solves():
                 solves[submission["pid"]].append(submission["uid"])
         else:
             solves[submission["pid"]] = [submission["uid"]]
+    solves = {problem: len(solves[problem]) for problem in solves}
     return solves
 
 @api.cache.memoize()
@@ -676,5 +677,5 @@ def get_unlocked_problems(tid, category=None):
         if api.autogen.is_autogen_problem(problem["pid"]):
             problem.update(api.autogen.get_problem_instance(problem["pid"], tid))
         problem['solved'] = problem in solved
-        problem['solves'] = len(solves[problem["pid"]]) if problem["pid"] in solves else 0
+        problem['solves'] = solves[problem["pid"]] if problem["pid"] in solves else 0
     return unlocked
