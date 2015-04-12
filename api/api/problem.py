@@ -597,10 +597,14 @@ def get_all_problem_solves():
     db = api.common.get_conn()
     match = {'correct': True}
     correct_submissions = db.submissions.find(match, {"_id":0})
-    solves = Counter()
+    solves = {}
     for submission in correct_submissions:
-        solves[submission["pid"]] += 1
-    return dict(solves)
+        if submission["pid"] in solves:
+            if submission["uid"] not in solves[submission["pid"]]:
+                solves[submission["pid"]].append(submission["uid"])
+        else:
+            solves[submission["pid"]] = [submission["uid"]]
+    return solves
 
 @api.cache.memoize()
 def get_solved_pids(tid=None, uid=None, category=None):
@@ -672,5 +676,5 @@ def get_unlocked_problems(tid, category=None):
         if api.autogen.is_autogen_problem(problem["pid"]):
             problem.update(api.autogen.get_problem_instance(problem["pid"], tid))
         problem['solved'] = problem in solved
-        problem['solves'] = solves[problem["pid"]] if problem["pid"] in solves else 0
+        problem['solves'] = len(solves[problem["pid"]]) if problem["pid"] in solves else 0
     return unlocked
