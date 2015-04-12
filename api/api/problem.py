@@ -600,10 +600,10 @@ def get_all_problem_solves():
     solves = {}
     for submission in correct_submissions:
         if submission["pid"] in solves:
-            if submission["uid"] not in solves[submission["pid"]]:
-                solves[submission["pid"]].append(submission["uid"])
+            if submission["tid"] not in solves[submission["pid"]]:
+                solves[submission["pid"]].append(submission["tid"])
         else:
-            solves[submission["pid"]] = [submission["uid"]]
+            solves[submission["pid"]] = [submission["tid"]]
     solves = {problem: len(solves[problem]) for problem in solves}
     return solves
 
