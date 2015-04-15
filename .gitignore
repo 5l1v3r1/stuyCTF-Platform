@@ -8,6 +8,7 @@ api/graders/autogentest/instances/*
 api/graders/*
 
 problems/*
+problem_static
 
 # Object files
 *.o
