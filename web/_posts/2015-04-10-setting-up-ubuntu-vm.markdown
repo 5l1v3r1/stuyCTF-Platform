@@ -1,6 +1,5 @@
 ---
 title: Setting up a Ubuntu VM
-date: 2015-04-11 16:00:00
 ---
 
  1. Go to: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)

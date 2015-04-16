@@ -173,6 +173,10 @@ img.logo-landscape {
     border-radius: 10px;
 }
 
+.post-date {
+    font-size: 12px;
+}
+
 .tab-pane-outline {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
