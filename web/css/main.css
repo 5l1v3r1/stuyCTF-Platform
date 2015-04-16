@@ -233,6 +233,11 @@ img.logo-landscape {
     vertical-align: middle;
 }
 
+.label.reviewed {
+    display: block;
+    padding: 5px;
+}
+
 @media (max-width: 991px) {
     .logo-column-item {
         margin-bottom: 30px;

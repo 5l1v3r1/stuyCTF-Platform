@@ -23,7 +23,7 @@ feedback_schema = Schema({
     ),
     "timeSpent": check(("Time spend must be a number", [int])),
     "source": check(
-        ("The source must be no more than 500 characters", [str, Length(max=10)])
+        ("The source must be no more than 10 characters", [str, Length(max=10)])
     )
 })
 
