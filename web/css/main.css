@@ -75,14 +75,14 @@ a.navbar-brand {
 }
 
 img.logo {
-	background-color: white;
-	display: block;
-	vertical-align: middle;
-	border-radius: 15px;
-	border-style: solid;
-	border-width: 5px;
-	border-color: white;
-	margin: auto;
+    background-color: white;
+    display: block;
+    vertical-align: middle;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+    margin: auto;
 }
 
 #problem-categories {
@@ -298,6 +298,13 @@ img.logo-landscape {
     margin-left: 25%;
 }
 
+@media (max-width: 767px) {
+    .form-horizontal .form-group {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 @media (min-width: 992px) {
     #user-registration-form {
         padding: 0 5%;
@@ -372,6 +379,12 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
    border-color: #1B7B81;
 }
 
+.review-group {
+    width: 615px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 .radio-bar {
     display: inline-block;
     position: absolute;
@@ -383,21 +396,30 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
     height: 2px;
 }
 
+@media (max-width: 767px) {
+    .review-group {
+        width: 430px;
+    }
+    .radio-bar {
+        width: 360px;
+    }
+}
+
 .feedback-label {
-    width:115px;
-    display:inline-block;
-    text-align:center;
-    white-space:nowrap;
-    overflow:visible;
-    vertical-align: top;
+    display: inline-block;
+    width: 18%;
     margin-bottom: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: visible;
+    vertical-align: top;
 }
 
 .feedback-radio {
-    margin-top:10px;
     display: inline-block;
-    width:115px;
-    text-align:center;
+    width: 18%;
+    margin-top: 10px;
+    text-align: center;
     z-index: 2;
 }
 
