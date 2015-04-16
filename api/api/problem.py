@@ -22,7 +22,7 @@ submission_schema = Schema({
     Required("pid"): check(
         ("This does not look like a valid pid.", [str, Length(max=100)])),
     Required("key"): check(
-        ("This does not look like a valid key.", [str, Length(max=100)]))
+        ("This does not look like a valid key.", [str, Length(max=300)]))
 })
 
 problem_schema = Schema({
