@@ -396,6 +396,10 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
     z-index: 2;
 }
 
+.popover-content ul {
+    padding-left: 20px;
+}
+
 /* Utilities */
 
 .hidden-page {

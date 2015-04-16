@@ -13,6 +13,7 @@ load_team_info = ->
         $("#team-info").html renderTeamInformation({data: data.data})
         x = "<ul>" + ("<li>" + _.escape(j) + "</li>" for j in data.data.justification).join("") + "</ul>"
         $('#eligibility-exp').data "content", x
+        $('#eligibility-exp').popover()
 
 load_group_info = ->
   apiCall "GET", "/api/group/list"
