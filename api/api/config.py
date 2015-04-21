@@ -47,7 +47,7 @@ competition_urls = ["stuyctf.me"]
 api.team.max_team_users = 5
 
 # Teams to display on scoreboard graph
-api.stats.top_teams = 5
+api.stats.top_teams = 10
 
 # start and end times!
 class EST(datetime.tzinfo):

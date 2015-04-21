@@ -11,6 +11,6 @@ In 3rd place, we have **BaseZero**!
 
 A huge additional shoutout to **foo** and **asdf** for managing to solve each qualifying problem and **foo** for solving the optional _Sleepwalking_ problem! Congratulations!
 
-The server will continue to be up for the better part of the year in addition to all the problems. If you are looking for solutions, we have released official writeups [here](https://github.com/stuyCTF/stuyCTF-2015).
+The server will continue to be up for the better part of the year in addition to all the problems. If you are looking for solutions, we have released official writeups [here on Github](https://github.com/stuyCTF/stuyCTF-2015).
 
 Lastly, we would like to once again thank you all for participating in stuyCTF 2015. Keep your eye out for the **next** stuyCTF! :)
