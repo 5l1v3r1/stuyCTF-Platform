@@ -1,0 +1,16 @@
+---
+title: The End
+---
+
+The stuyCTF would like to thank everyone who participated in stuyCTF! We hope that you enjoyed solving the challenges as much as we enjoyed creating them for you. Don't be frustrated if you didn't get a problem! This is all a learning experience and the problems that you learn the most from are the ones that you don't actually get.
+
+As for the results...  
+In 1st place, we have **foo**!  
+In 2nd place, we have **asdf**!  
+In 3rd place, we have **BaseZero**!  
+
+A huge additional shoutout to **foo** and **asdf** for managing to solve each qualifying problem and **foo** for solving the optional _Sleepwalking_ problem! Congratulations!
+
+The server will continue to be up for the better part of the year in addition to all the problems. If you are looking for solutions, we have released official writeups [here](https://github.com/stuyCTF/stuyCTF-2015).
+
+Lastly, we would like to once again thank you all for participating in stuyCTF 2015. Keep your eye out for the **next** stuyCTF! :)
