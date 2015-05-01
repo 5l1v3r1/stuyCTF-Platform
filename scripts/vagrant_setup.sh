@@ -18,6 +18,7 @@ apt-get -y install ruby-dev
 apt-get -y install dos2unix
 apt-get -y install tmux
 apt-get -y install openjdk-7-jdk
+apt-get -y install php5-cli php5-fpm
 
 npm install -g coffee-script
 npm install -g react-tools
@@ -35,4 +36,5 @@ echo 'PATH=$PATH:/home/vagrant/scripts' >> /etc/profile
 cp /vagrant/config/ctf.nginx /etc/nginx/sites-enabled/ctf
 rm /etc/nginx/sites-enabled/default
 mkdir -p /srv/http/ctf
+mkdir -p /srv/http/php
 service nginx restart
