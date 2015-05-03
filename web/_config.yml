@@ -10,5 +10,5 @@ mode: production # set to production to enable analytics
 markdown: kramdown
 permalink: none
 
-start_time: April 11, 2015
-end_time: April 20, 2015
+start_time: April 11, 2015 10:00 AM
+end_time: April 20, 2015 10:00 PM

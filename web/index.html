@@ -4,10 +4,10 @@ title: Homepage
 title_label: hide
 pre_scripts:
  - /js/registration.js
+ - /js/libs/countdown.min.js
 post_scripts:
  - //cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js
  - //cdnjs.cloudflare.com/ajax/libs/trianglify/0.1.5/trianglify.min.js
- - /js/libs/countdown.min.js
 startup_functions:
  - hideRegistrationIfLoggedIn()
 ---
@@ -17,7 +17,7 @@ startup_functions:
     <div class="logo">
         <span style="color:#0074D9;">stuy</span><span style="color:#FF4136;">CTF</span>
         <br>
-        <span class="logo-date">{{ site.start_time }} - {{ site.end_time }}</span>
+        <span class="logo-date">{{ site.start_time | date: "%b %-d, %Y" }} - {{ site.end_time | date: "%b %-d, %Y" }}</span>
         <ul id="countdown">      
             <li><div class="days">00</div><p class="days_text">Days</p></li>
             <li><div class="hours">00</div><p class="hours_text">Hours</p></li>
@@ -59,6 +59,13 @@ startup_functions:
 </div>
 
 <script>
+jQuery('#countdown').countdown({
+    date: '{{ site.end_time | date: "%m/%d/%Y %X" }}',
+    offset: -4,
+    day: 'Day',
+    days: 'Days'
+});
+
 function backgroundTrianglify() {
     var t = new Trianglify({
         cellsize: $(window).width() * .15
