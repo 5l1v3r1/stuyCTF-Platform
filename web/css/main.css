@@ -218,14 +218,6 @@ img.logo-landscape {
     }
 }
 
-.Unsolved {
-    color: red;
-}
-
-.Solved {
-    color: green;
-}
-
 .problem table {
     width: 100%;
     margin-top: 5px;
@@ -246,6 +238,12 @@ img.logo-landscape {
     font-size: 140%;
     text-align: center;
     vertical-align: middle;
+}
+
+.problem.solved td {
+    border: 1px solid #dff0d8;
+    background-color: #dff0d8;
+    color: #007196;
 }
 
 .label.reviewed {
