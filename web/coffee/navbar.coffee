@@ -38,10 +38,11 @@ userLoggedIn =
     Logout: "#"
 
 userLoggedInNoCompetition =
+  Problems: "/problems"
   Team: "/team"
   Chat: "/chat"
   Scoreboard: "/scoreboard"
-  About:  
+  About:
     About: "/about"
     FAQ: "/faq"
     News: "/news"
