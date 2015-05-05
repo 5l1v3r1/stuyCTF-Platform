@@ -11,16 +11,42 @@ startup_functions:
 <link href="/css/star-rating.min.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/template" id="problem-list-template">
-    <div class="problem-list panel-group">
-        <% _.each(problems, function(problem) { %>
-        <%= renderProblem({
-        problem: problem,
-        reviewData: reviewData,
-        renderProblemReview: renderProblemReview,
-        renderProblemSubmit: renderProblemSubmit,
-        sanitizeMetricName: sanitizeMetricName
-        }) %>
-        <% }); %>
+    <div class="problem-list">
+        <div class="row">
+            <%
+            function problemCompare(a, b) {
+                if (a.category == b.category) {
+                    return parseInt(a.score) < parseInt(b.score);
+                } else {
+                    return a.category.localeCompare(b.category);
+                }
+            }
+            problems = problems.sort(problemCompare);
+            var prev = problems[0].category;
+            %>
+            <div class="col-xs-12"><h3><u><%= problems[0].category %></u></h3></div>
+            <%
+            _.each(problems, function(problem) {
+                if (prev != problem.category) {
+            %>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12"><h3><u><%= problem.category %></u></h3></div>
+            <% } %>
+                <%= renderProblem({
+                problem: problem,
+                reviewData: reviewData,
+                renderProblemReview: renderProblemReview,
+                renderProblemSubmit: renderProblemSubmit,
+                sanitizeMetricName: sanitizeMetricName
+                }) %>
+            <%
+                prev = problem.category;
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+            %>
+        </div>
     </div>
 </script>
 
@@ -30,7 +56,8 @@ startup_functions:
     var panel = {
     className: problem.solved ? "solved" : "",
     collapseClass: problem.solved ? "" : "in",
-    title: problem.name + " - " + problem.score,
+    title: problem.name,
+    points: problem.score,
     solves: problem.solves,
     status: problem.solved ? "Solved" : "Unsolved",
     category: problem.category == "" ? "Miscellaneous" : problem.category
@@ -45,50 +72,53 @@ startup_functions:
     };
     %>
 
-    <div class="problem <%= panel.className %> panel panel-default">
-        <div class="problem-header panel-heading" data-toggle="collapse" data-target="#<%- problem.pid %>">
-            <h4 class="panel-title">
-                <span class="label label-info label-solves"><%= panel.solves %> <%= panel.solves == 1 ? "solve" : "solves" %></span>
-                <%- panel.title %>
-                <div class="pull-right">
-                    <%= panel.category %> - 
-                    <span class="<%= panel.status %>">
-                    <%= panel.status %>
-                    </span>
-                </div>
-            </h4>
-        </div>
+    <div class="problem <%= panel.className %> col-md-4" data-toggle="modal" data-target="#<%- problem.pid %>">
+        <table data-toggle="tooltip" data-trigger="hover" title='<%= panel.solves %> <%= panel.solves == 1 ? "solve" : "solves" %>'>
+            <td><h4><%- panel.title %></h4></div>
+            <td class="points"><%= panel.points %></td>
+        </table>
+    </div>
 
-        <div class="panel-collapse collapse <%= panel.collapseClass %>" id="<%= problem.pid %>">
-            <div class="problem-body panel-body">
-                <ul class="nav nav-tabs">
-                    <li class="<%= pill.solveClassName %>"><a href="#<%= pill.solveId %>" data-toggle="tab">Solve</a>
-                    </li>
-                    <li><a href="#<%= pill.hintId %>" data-toggle="tab" class="hint-tab-button" data-pid="<%= problem.pid %>">Hint</a>
-                    </li>
-                    <li class="<%= pill.reviewClassName %>"><a href="#<%= pill.reviewId %>" data-toggle="tab">Review</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane <%= pill.solveClassName %>" id="<%= pill.solveId %>">
-                        <div class="panel-body">
-                            <%= renderProblemSubmit({problem: problem}) %>
+    <div class="modal fade" id="<%= problem.pid %>" tabindex="-1" role="dialog" aria-labelledby="<%= problem.pid %>" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><%- panel.title %> - <%- panel.points %></h3>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="<%= pill.solveClassName %>"><a href="#<%= pill.solveId %>" data-toggle="tab">Solve</a>
+                        </li>
+                        <li><a href="#<%= pill.hintId %>" data-toggle="tab" class="hint-tab-button" data-pid="<%= problem.pid %>">Hint</a>
+                        </li>
+                        <li class="<%= pill.reviewClassName %>"><a href="#<%= pill.reviewId %>" data-toggle="tab">Review</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane <%= pill.solveClassName %>" id="<%= pill.solveId %>">
+                            <div class="panel-body">
+                                <%= renderProblemSubmit({problem: problem}) %>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="<%= pill.hintId %>">
+                            <div class="panel-body">
+                                <%= problem.hint %>
+                            </div>
+                        </div>
+                        <div class="tab-pane <%= pill.reviewClassName %>" id="<%= pill.reviewId %>">
+                            <div class="panel-body">
+                                <%= renderProblemReview({
+                                problem: problem,
+                                alreadyReviewed: alreadyReviewed,
+                                sanitizeMetricName: sanitizeMetricName
+                                }) %>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="<%= pill.hintId %>">
-                        <div class="panel-body">
-                            <%= problem.hint %>
-                        </div>
-                    </div>
-                    <div class="tab-pane <%= pill.reviewClassName %>" id="<%= pill.reviewId %>">
-                        <div class="panel-body">
-                            <%= renderProblemReview({
-                            problem: problem,
-                            alreadyReviewed: alreadyReviewed,
-                            sanitizeMetricName: sanitizeMetricName
-                            }) %>
-                        </div>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

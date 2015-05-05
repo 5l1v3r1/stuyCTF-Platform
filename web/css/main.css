@@ -226,10 +226,25 @@ img.logo-landscape {
     color: green;
 }
 
-.label-solves {
-    font-size: 60%;
-    border-radius: 5px;
-    margin-right: 5px;
+.problem table {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.problem td {
+    padding: 5px 10px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.problem .points {
+    width: 80px;
+    background-color: #5bc0de;
+    color: #fff;
+    font-size: 140%;
+    text-align: center;
     vertical-align: middle;
 }
 
@@ -396,7 +411,7 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
     height: 2px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
     .review-group {
         width: 430px;
     }
@@ -443,4 +458,10 @@ img {
 
 .page-header {
     margin-top: 30px;
+}
+
+.modal-backdrop.in {
+    position: fixed;
+    height: 100%;
+    z-index: 1039;
 }

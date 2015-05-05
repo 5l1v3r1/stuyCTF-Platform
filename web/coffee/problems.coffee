@@ -128,6 +128,8 @@ loadProblems = ->
 
           $(".problem-review-form").on "submit", addProblemReview
 
+          $('[data-toggle="tooltip"]').tooltip()
+
 addScoreToTitle = (selector) ->
         apiCall "GET", "/api/team/score", {}
         .done (data) ->
