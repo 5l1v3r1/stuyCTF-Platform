@@ -15,10 +15,16 @@ startup_functions:
         <div class="row">
             <%
             function problemCompare(a, b) {
-                if (a.category == b.category) {
-                    return parseInt(a.score) < parseInt(b.score);
+                var compare = a.category.localeCompare(b.category);
+                if (compare) {
+                    return compare;
                 } else {
-                    return a.category.localeCompare(b.category);
+                    if (parseInt(a.score) < parseInt(b.score)) {
+                        return -1;
+                    }
+                    else {
+                        return 1;
+                    }
                 }
             }
             problems = problems.sort(problemCompare);
