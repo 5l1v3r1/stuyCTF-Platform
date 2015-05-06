@@ -14,142 +14,14 @@ html, body {
     padding-bottom: 60px;
 }
 
-#top-team-score-progression-graph {
-    padding-top: 30px;
-}
-
-@media (min-width: 992px) {
-    #top-team-score-progression-graph,
-    #team-progression-graph {
-        height: 300px;
-    }
-}
-
-#scoreboard-teamscore h3 {
-    margin-top: 0;
-}
-
-.scoreboard-table {
-    background-color: white;
-}
-
-.team-photo-img {
-    width: 150px;
-}
-
-.btn-group-separate .btn {
-    border-top-right-radius: 4px !important;
-    border-bottom-right-radius: 4px !important;
-    border-bottom-left-radius: 4px !important;
-    border-top-left-radius: 4px !important;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
-a.navbar-brand {
-    max-width: 250px;
-}
-
-.button-column {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.login-changer {
-    text-align: right;
-}
-
 #main-content h1, #main-content h2, #main-content h3,
 #main-content h4, #main-content h5, #main-content h6 {
     color: #007196;
     font-weight: 500;
 }
 
-.diagram {
-    background-color:#25acb4;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-}
-
-img.logo {
-    background-color: white;
-    display: block;
-    vertical-align: middle;
-    border-radius: 15px;
-    border-style: solid;
-    border-width: 5px;
-    border-color: white;
-    margin: auto;
-}
-
-#problem-categories {
-    margin-top: 20px;
-}
-
-#problem-categories > div {
-    padding: 10px 0;
-    border-left: 1px solid #ddd;
-}
-
-#problem-categories > div:first-child {
-    border: none;
-}
-
-@media (max-width: 991px) {
-    #problem-categories > div:first-child, #problem-categories > div:nth-child(2) {
-        border-bottom: 1px solid #ddd;
-    }
-    #problem-categories > div:nth-child(3) {
-        border: none;
-    }
-}
-
-#problem-categories .icon {
-    padding: 20px 10px 30px;
-    font-size: 60px;
-    color: #007196;
-}
-
-.game-image-item, .logo-column-item {
-    text-align: center;
-    vertical-align: middle;
-}
-
-img.logo-landscape {
-    max-width: 400px;
-    width: 100%;
-}
-
-.home-section {
-    margin-bottom: 0px;
-}
-
-.wrap-pattern {
-    background-color: #161415;
-    border-bottom: none;
-}
-
-.team-visualization-enabler {
-    cursor: pointer;
-}
-
-.delete-group-span {
-    cursor: pointer;
-}
-
-.leave-group-span {
-    cursor: pointer;
-}
-
-.deleter-column {
-    width: 30px;
-}
-
-.image-achievement {
-    width: 100px;
+a.navbar-brand {
+    max-width: 250px;
 }
 
 #footer {
@@ -164,100 +36,7 @@ img.logo-landscape {
     display: none;
 }
 
-.alert-success {
-    background-color: #F5F5F5;
-}
-
-.alert {
-    padding: 7px;
-    border-radius: 10px;
-}
-
-.post-date {
-    font-size: 12px;
-}
-
-.tab-pane-outline {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0px 0px 5px 5px;
-    padding: 10px;
-}
-
-.nav-tabs {
-    margin-bottom: 0;
-}
-
-.team-name {
-    margin-top: 8px;
-    text-align: center;
-    font-size: larger;
-    font-weight: 700;
-}
-
-.team-role {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-}
-
-.team-photo {
-    text-align: center;
-}
-
-@media (min-width: 992px) {
-    .form-inline .class-class-name {
-        width: 160px;
-    }
-
-    .form-inline .class-teacher-username {
-        width: 160px;
-    }
-}
-
-.problem table {
-    width: 100%;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.problem td {
-    padding: 5px 10px;
-    vertical-align: top;
-    border: 1px solid #ddd;
-    box-shadow: 1px 1px 5px #ccc;
-}
-
-.problem .points {
-    width: 80px;
-    background-color: #5bc0de;
-    color: #fff;
-    font-size: 140%;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.problem.solved td {
-    border: 1px solid #dff0d8;
-    background-color: #dff0d8;
-    color: #007196;
-}
-
-.label.reviewed {
-    display: block;
-    padding: 5px;
-}
-
-@media (max-width: 991px) {
-    .logo-column-item {
-        margin-bottom: 30px;
-    }
-}
-
-/* Front Page */
+/* Home Page */
 
 .logo-wrapper {
     position: relative;
@@ -301,6 +80,41 @@ img.logo-landscape {
     }
 }
 
+ul#countdown {list-style: none; margin: 0; padding: 0; text-align: center;}
+ul#countdown li {display: inline-block;}
+ul#countdown li div {font-size: 40%; font-weight: 300;}
+ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
+
+#problem-categories {
+    margin-top: 20px;
+}
+
+#problem-categories > div {
+    padding: 10px 0;
+    border-left: 1px solid #ddd;
+}
+
+#problem-categories > div:first-child {
+    border: none;
+}
+
+@media (max-width: 991px) {
+    #problem-categories > div:first-child, #problem-categories > div:nth-child(2) {
+        border-bottom: 1px solid #ddd;
+    }
+    #problem-categories > div:nth-child(3) {
+        border: none;
+    }
+}
+
+#problem-categories .icon {
+    padding: 20px 10px 30px;
+    font-size: 60px;
+    color: #007196;
+}
+
+/* Registration */
+
 .registration-header {
     padding-top: 15px;
     text-align: center;
@@ -333,10 +147,173 @@ img.logo-landscape {
     text-align: center;
 }
 
-ul#countdown {list-style: none; margin: 0; padding: 0; text-align: center;}
-ul#countdown li {display: inline-block;}
-ul#countdown li div {font-size: 40%; font-weight: 300;}
-ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
+.btn-group-separate .btn {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Login */
+
+.button-column {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.login-changer {
+    text-align: right;
+}
+
+/* News */
+
+.post-date {
+    font-size: 12px;
+}
+
+/* Team */
+
+.image-achievement {
+    width: 100px;
+}
+
+@media (min-width: 992px) {
+    .form-inline .class-class-name {
+        width: 160px;
+    }
+
+    .form-inline .class-teacher-username {
+        width: 160px;
+    }
+}
+
+/* Scoreboard */
+
+#top-team-score-progression-graph {
+    padding-top: 30px;
+}
+
+@media (min-width: 992px) {
+    #top-team-score-progression-graph,
+    #team-progression-graph {
+        height: 300px;
+    }
+}
+
+#scoreboard-teamscore h3 {
+    margin-top: 0;
+}
+
+/* Problems */
+
+.problem table {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.problem td {
+    padding: 5px 10px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.problem .points {
+    width: 80px;
+    background-color: #5bc0de;
+    color: #fff;
+    font-size: 140%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.problem.solved td {
+    border: 1px solid #dff0d8;
+    background-color: #dff0d8;
+    color: #007196;
+}
+
+.problem-review-form {
+    overflow-x: scroll;
+}
+
+.review-group {
+    width: 615px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.radio-bar {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    border-bottom: 1px solid black;
+    z-index: 1;
+    width: 540px;
+    height: 2px;
+}
+
+@media (max-width: 992px) {
+    .review-group {
+        width: 430px;
+    }
+    .radio-bar {
+        width: 360px;
+    }
+}
+
+.feedback-label {
+    display: inline-block;
+    width: 18%;
+    margin-bottom: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: visible;
+    vertical-align: top;
+}
+
+.feedback-radio {
+    display: inline-block;
+    width: 18%;
+    margin-top: 10px;
+    text-align: center;
+    z-index: 2;
+}
+
+.label.reviewed {
+    display: block;
+    padding: 5px;
+}
+
+/* Classroom */
+
+.team-visualization-enabler {
+    cursor: pointer;
+}
+
+.delete-group-span {
+    cursor: pointer;
+}
+
+.leave-group-span {
+    cursor: pointer;
+}
+
+.deleter-column {
+    width: 30px;
+}
+
+.tab-pane-outline {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+}
 
 /* Style for charts that are disabled before the competition */
 
@@ -392,58 +369,6 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
    border-color: #1B7B81;
 }
 
-.problem-review-form {
-    overflow-x: scroll;
-}
-
-.review-group {
-    width: 615px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.radio-bar {
-    display: inline-block;
-    position: absolute;
-    top: 20px;
-    left: 50px;
-    border-bottom: 1px solid black;
-    z-index: 1;
-    width: 540px;
-    height: 2px;
-}
-
-@media (max-width: 992px) {
-    .review-group {
-        width: 430px;
-    }
-    .radio-bar {
-        width: 360px;
-    }
-}
-
-.feedback-label {
-    display: inline-block;
-    width: 18%;
-    margin-bottom: 10px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: visible;
-    vertical-align: top;
-}
-
-.feedback-radio {
-    display: inline-block;
-    width: 18%;
-    margin-top: 10px;
-    text-align: center;
-    z-index: 2;
-}
-
-.popover-content ul {
-    padding-left: 20px;
-}
-
 /* Utilities */
 
 .hidden-page {
@@ -460,6 +385,10 @@ img {
 
 .page-header {
     margin-top: 30px;
+}
+
+.nav-tabs {
+    margin-bottom: 0;
 }
 
 .modal-backdrop.in {
