@@ -392,6 +392,10 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
    border-color: #1B7B81;
 }
 
+.problem-review-form {
+    overflow-x: scroll;
+}
+
 .review-group {
     width: 615px;
     margin-left: auto !important;
