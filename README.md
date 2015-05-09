@@ -17,6 +17,11 @@ Setting Up The Development Environment
 
 *Note*: The competition has two modes: competition active and competition inactive. In inactive mode, there are no problems and only registration is available. To change what mode the competition is in, edit api/api/config.py and change the competition dates such that the current date is either inside or outside the range of the competition dates.
 
+Setting Up The Production Server
+------------
+1. `cd scripts` inside the repo
+2. `./server-setup.sh` to configure server environment
+3. Run `devploy` to deploy the site
 
 Loading Problems
 ------------
