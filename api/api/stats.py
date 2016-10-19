@@ -25,16 +25,6 @@ def get_score(tid=None, uid=None):
     return score
 
 
-def get_team_review_count(tid=None, uid=None):
-    if uid is not None:
-        return len(api.problem_feedback.get_reviewed_pids(uid=uid))
-    elif tid is not None:
-        count = 0
-        for member in api.team.get_team_members(tid=tid):
-            count += len(api.problem_feedback.get_reviewed_pids(uid=member['uid']))
-        return count
-
-
 def get_group_scores(gid=None, name=None):
     """
     Get the group scores.
@@ -283,24 +273,6 @@ def get_stats():
     for number, count in get_days_active_breakdown(user_breakdown=user_breakdown).items():
         print("%s Days: %s Teams" % (number, count))
     bar()
-    print("REVIEWS:")
-    bar()
-    review_data = get_review_stats()
-    print("Problems by Reviewed Educational Value (10+ Reviews)")
-    for problem in sorted(review_data, key=lambda x: x['education']):
-        if problem['votes'] > 10:
-            print("{name:30} {education:.3f} ({votes} reviews)".format(**problem))
-    bar()
-    print("Problems by Reviewed Enjoyment (10+ Reviews)")
-    for problem in sorted(review_data, key=lambda x: x['enjoyment']):
-        if problem['votes'] > 10:
-            print("{name:30} {enjoyment:.3f} ({votes} reviews)".format(**problem))
-    bar()
-    print("Problems by Reviewed Difficulty (10+ Reviews)")
-    for problem in sorted(review_data, key=lambda x: x['difficulty']):
-        if problem['votes'] > 10:
-            print("{name:30} {difficulty:.3f} ({votes} reviews)".format(**problem))
-    bar()
 
 
 def get_average_eligible_score():
@@ -506,42 +478,3 @@ def check_invalid_autogen_submissions():
                             cheaters.append((team['team_name'], get_score(tid=flag['tid']), problem['name'], flag['key'], solution['key']))
                         badteams.add(team['tid'])
     print('\n'.join([str(x) for x in sorted(cheaters, key=lambda x: x[1], reverse=True)]))
-
-
-def get_review_stats():
-    results = []
-    problems = api.problem.get_all_problems()
-    for p in problems:
-        timespent = 0
-        enjoyment = 0
-        difficulty = 0
-        edval = 0
-        counter = 0
-        for item in api.problem_feedback.get_problem_feedback(pid=p['pid']):
-            counter += 1
-            metrics = item['feedback']['metrics']
-            edval += metrics['educational-value']
-            difficulty += metrics['difficulty']
-            enjoyment += metrics['enjoyment']
-            timespent += item['feedback']['timeSpent']
-        if counter > 0:
-            results.append({'name': p['name'], 'education': edval/counter, 'difficulty': difficulty/counter,
-                            'enjoyment': enjoyment/counter, 'time': timespent/counter, 'votes': counter})
-    return results
-
-
-def print_review_comments():
-    problems = api.problem.get_all_problems()
-    for p in problems:
-        comments = []
-        for item in api.problem_feedback.get_problem_feedback(pid=p['pid']):
-            comment = item['feedback']['comment']
-            if len(comment.strip()) > 0:
-                comments.append(comment.strip())
-        if len(comments) > 0:
-            print("")
-            print("")
-            print(p['name'])
-            print("----------")
-            for comment in comments:
-                print("'%s'" % comment)

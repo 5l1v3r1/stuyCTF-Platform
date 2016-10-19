@@ -63,11 +63,6 @@ class StatsHandler(logging.StreamHandler):
                 "key": key,
                 "success": result["correct"]
             },
-        "api.problem_feedback.add_problem_feedback":
-            lambda pid, uid, feedback, result=None: {
-                "pid": pid,
-                "feedback": feedback
-            },
         "api.user.update_password_request":
             lambda params, uid=None, check_current=False, result=None: {},
         "api.utilities.request_password_reset":

@@ -55,28 +55,6 @@ def get_single_problem_hook(pid):
     problem_info = api.problem.get_problem(pid, tid=api.user.get_user()['tid'])
     return WebSuccess(data=problem_info)
 
-@blueprint.route('/feedback', methods=['POST'])
-@api_wrapper
-@check_csrf
-@require_login
-@block_before_competition(WebError("The competition has not begun yet!"))
-def problem_feedback_hook():
-    feedback = json.loads(request.form.get("feedback", ""))
-    pid = request.form.get("pid", None)
-
-    if feedback is None or pid is None:
-        return WebError("Please supply a pid and feedback.")
-
-    api.problem_feedback.add_problem_feedback(pid, api.auth.get_uid(), feedback)
-    return WebSuccess("Your feedback has been accepted.")
-
-@blueprint.route('/feedback/reviewed', methods=['GET'])
-@api_wrapper
-@require_login
-@block_before_competition(WebError("The competition has not begun yet!"))
-def problem_reviews_hook():
-    return WebSuccess(data=api.problem_feedback.get_reviewed_pids())
-
 @blueprint.route("/hint", methods=['GET'])
 @api_wrapper
 @require_login

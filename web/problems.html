@@ -42,8 +42,6 @@ startup_functions:
             <% } %>
                 <%= renderProblem({
                 problem: problem,
-                reviewData: reviewData,
-                renderProblemReview: renderProblemReview,
                 renderProblemSubmit: renderProblemSubmit,
                 sanitizeMetricName: sanitizeMetricName
                 }) %>
@@ -58,7 +56,6 @@ startup_functions:
 
 <script type="text/template" id="problem-template">
     <%
-    var alreadyReviewed = $.inArray(problem.pid, reviewData) !== -1;
     var panel = {
     className: problem.solved ? "solved" : "",
     collapseClass: problem.solved ? "" : "in",
@@ -71,10 +68,8 @@ startup_functions:
 
     var pill = {
     solveId: problem.pid + "solve",
-    reviewId: problem.pid + "review",
     hintId: problem.pid + "hint",
-    solveClassName: problem.solved ? "disabled" : "active",
-    reviewClassName: problem.solved ? "active" : ""
+    inputClassName: problem.solved ? " disabled" : ""
     };
     %>
 
@@ -94,31 +89,23 @@ startup_functions:
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs">
-                        <li class="<%= pill.solveClassName %>"><a href="#<%= pill.solveId %>" data-toggle="tab">Solve</a>
+                        <li class="active"><a href="#<%= pill.solveId %>" data-toggle="tab">Solve</a>
                         </li>
                         <li><a href="#<%= pill.hintId %>" data-toggle="tab" class="hint-tab-button" data-pid="<%= problem.pid %>">Hint</a>
                         </li>
-                        <li class="<%= pill.reviewClassName %>"><a href="#<%= pill.reviewId %>" data-toggle="tab">Review</a>
-                        </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane <%= pill.solveClassName %>" id="<%= pill.solveId %>">
+                        <div class="tab-pane active" id="<%= pill.solveId %>">
                             <div class="panel-body">
-                                <%= renderProblemSubmit({problem: problem}) %>
+                                <%= renderProblemSubmit({
+                                    problem: problem,
+                                    disabled: pill.inputClassName
+                                })%>
                             </div>
                         </div>
                         <div class="tab-pane" id="<%= pill.hintId %>">
                             <div class="panel-body">
                                 <%= problem.hint %>
-                            </div>
-                        </div>
-                        <div class="tab-pane <%= pill.reviewClassName %>" id="<%= pill.reviewId %>">
-                            <div class="panel-body">
-                                <%= renderProblemReview({
-                                problem: problem,
-                                alreadyReviewed: alreadyReviewed,
-                                sanitizeMetricName: sanitizeMetricName
-                                }) %>
                             </div>
                         </div>
                     </div>
@@ -159,77 +146,6 @@ startup_functions:
             </td>
         </tr>
     </table>
-</script>
-
-<script type="text/template" id="problem-review-template">
-    <form class="form-horizontal problem-review-form" data-pid="<%= problem.pid %>">
-        <% if(alreadyReviewed) { %>
-        <div class="row">
-            <div class="label label-default reviewed">You have already reviewed this problem. Feel free to provide additional feedback.</div>
-            </p>
-        </div>
-        <% } %>
-        <div class="form-group review-group">
-            <% _.each(window.ratingMetrics, function(metric) { %>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center">
-                    <h4><%- window.ratingQuestion[metric] %></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center; margin: auto">
-                    <center>
-                        <div>
-                            <div class="radio-bar"></div>
-                            <% _.each(window.ratingChoices[metric], function(choice, index, list) { %>
-                                <div class="feedback-radio">
-                                    <input type="radio" style="position: relative; z-index: 2;"
-                                           name="rating-<%= sanitizeMetricName(metric) %>"
-                                           value="<%= index %>"
-                                        <% if(index == 2) { %>
-                                           checked="checked"
-                                        <% } %>
-                                           >
-                                </div>
-                            <% }) %>
-                        </div>
-                        <div>
-                            <% _.each(window.ratingChoices[metric], function(choice) { %>
-                                <div class="feedback-label"><%- choice %></div>
-                            <% }) %>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <% }) %>
-            <div class="row" style="margin-top: 15px">
-                <div class="col-md-12">
-                    <h4>How long did this problem take you?</h4>
-
-                    <div class="time-slider" id="slider-<%= problem.pid %>"
-                         name="time-slider"
-                         data-label-target="slider-label-<%= problem.pid %>"></div>
-                    <div style="text-align: center">
-                        <h5 id="slider-label-<%= problem.pid %>"></h5>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Any other thoughts?</h4>
-                    <textarea name="feedback" class="form-control" placeholder="Leave a comment here!"></textarea>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 15px">
-                <div class="col-md-12">
-                     <span class="input-group-btn">
-                        <button class="btn btn-default feedback-button" type="submit">Send Feedback</button>
-                    </span>
-                </div>
-            </div>
-
-        </div>
-    </form>
 </script>
 
 <div class="container">

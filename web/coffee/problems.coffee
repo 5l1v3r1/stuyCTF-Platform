@@ -1,7 +1,6 @@
 renderProblemList = _.template($("#problem-list-template").remove().text())
 renderProblem = _.template($("#problem-template").remove().text())
 renderProblemSubmit = _.template($("#problem-submit-template").remove().text())
-renderProblemReview = _.template($("#problem-review-template").remove().text())
 renderAchievementMessage = _.template($("#achievement-message-template").remove().text())
 
 @ratingMetrics = ["Difficulty", "Enjoyment", "Educational Value"]
@@ -43,41 +42,6 @@ submitProblem = (e) ->
         new_achievements = (x for x in data.data when !x.seen)
         constructAchievementCallbackChain new_achievements
 
-addProblemReview = (e) ->
-  e.preventDefault()
-
-  feedback = {
-    metrics: {}
-    comment: ""
-  }
-
-  serialized = $(e.target).serializeObject()
-
-  _.each serialized, (value, key) ->
-    match = key.match(/^rating-(.+)/)
-    if match and match.length == 2
-      feedback.metrics[match[1]] = parseInt(value)
-    else
-      feedback.comment = value
-
-  pid = $(e.target).data("pid")
-  sliderName = "#slider-" + pid
-  feedback.timeSpent = $(sliderName).slider("option", "value");
-  feedback.source = 'basic'
-
-  postData = {feedback: JSON.stringify(feedback), pid: pid}
-
-  apiCall "POST", "/api/problems/feedback", postData
-  .done (data) ->
-    loadProblems()
-    apiNotify data
-    ga('send', 'event', 'Problem', 'Review', 'Basic')
-    apiCall "GET", "/api/achievements"
-    .done (data) ->
-      if data['status'] is 1
-        new_achievements = (x for x in data.data when !x.seen)
-        constructAchievementCallbackChain new_achievements
-
 toggleHint = (e) ->
   pid = $(e.target).data("pid")
   ga('send', 'event', 'Problem', 'OpenHint', 'Basic')
@@ -95,40 +59,22 @@ loadProblems = ->
 	# is defined in a template. This solution is therefore a bit
 	# of a hack.
         addScoreToTitle("#title")
-        apiCall "GET", "/api/problems/feedback/reviewed", {}
-        .done (reviewData) ->
-          $("#problem-list-holder").html renderProblemList({
-            problems: data.data,
-            reviewData: reviewData.data,
-            renderProblem: renderProblem,
-            renderProblemSubmit: renderProblemSubmit,
-            renderProblemReview: renderProblemReview,
-            sanitizeMetricName: sanitizeMetricName
-          })
+        $("#problem-list-holder").html renderProblemList({
+          problems: data.data,
+          renderProblem: renderProblem,
+          renderProblemSubmit: renderProblemSubmit,
+          sanitizeMetricName: sanitizeMetricName
+        })
 
-          $( ".time-slider" ).slider {
-            value: 4,
-            min: 0,
-            max: 15,
-            step: 1,
-            slide: ( event, ui ) ->
-              $( "#" + $(this).data("label-target")).html( window.timeValues[ui.value] );
-          }
+        #Should solved problem descriptions still be able to be viewed?
+        #$("li.disabled>a").removeAttr "href"
 
-          $( ".time-slider" ).each (x) ->
-            $("#" + $(this).data("label-target")).html(window.timeValues[4]);
+        $(".problem-hint").hide()
+        $(".problem-submit").on "submit", submitProblem
+        $(".info-span").on "click", toggleHint
+        $(".hint-tab-button").on "click", toggleHint
 
-          #Should solved problem descriptions still be able to be viewed?
-          #$("li.disabled>a").removeAttr "href"
-
-          $(".problem-hint").hide()
-          $(".problem-submit").on "submit", submitProblem
-          $(".info-span").on "click", toggleHint
-          $(".hint-tab-button").on "click", toggleHint
-
-          $(".problem-review-form").on "submit", addProblemReview
-
-          $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip()
 
 addScoreToTitle = (selector) ->
         apiCall "GET", "/api/team/score", {}
