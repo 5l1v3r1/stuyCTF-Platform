@@ -378,3 +378,7 @@ img {
     height: 100%;
     z-index: 1039;
 }
+
+.panel-body  {
+   word-break: break-all
+}
