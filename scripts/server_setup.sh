@@ -11,6 +11,7 @@ if [[ $(pwd) == *"/scripts" ]]; then
     cd ..
     ln -s $(pwd)/api ${VAGRANT_PATH}
     ln -s $(pwd)/web ${VAGRANT_PATH}
+    ln -s $(pwd)/problems ${VAGRANT_PATH}
     ln -s $(pwd)/scripts ${VAGRANT_PATH}
     ln -s $(pwd)/config ${VAGRANT_PATH}
 else
