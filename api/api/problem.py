@@ -657,12 +657,13 @@ def get_unlocked_problems(tid, category=None):
         List of unlocked problem dictionaries
     """
 
-    solves = get_all_problem_solves()
     solved = get_solved_problems(tid=tid)
-    unlocked = [get_problem(pid=pid) for pid in get_unlocked_pids(tid, category=category)]
-    for problem in unlocked:
+    problems = get_all_problems()
+    unlocked = []
+    for problem in problems:
         if api.autogen.is_autogen_problem(problem["pid"]):
             problem.update(api.autogen.get_problem_instance(problem["pid"], tid))
         problem['solved'] = problem in solved
-        problem['solves'] = solves[problem["pid"]] if problem["pid"] in solves else 0
+        problem['solves'] = len(api.stats.get_problem_solves(pid=problem["pid"]))
+        unlocked.append(problem)
     return unlocked

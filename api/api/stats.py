@@ -7,6 +7,8 @@ import statistics
 from collections import defaultdict
 from hashlib import sha1
 
+from api.common import InternalException
+
 _get_problem_names = lambda problems: [problem['name'] for problem in problems]
 top_teams = 10
 
@@ -203,6 +205,25 @@ def get_top_teams():
 
     all_teams = api.stats.get_all_team_scores()
     return all_teams if len(all_teams) < top_teams else all_teams[:top_teams]
+
+@api.cache.memoize()
+def get_problem_solves(name=None, pid=None):
+    """
+    Returns the number of solves for a particular problem.
+    Must supply eithe pid or name.
+    Args:
+        name: name of the problem
+        pid: pid of the problem
+    """
+    if not name and not pid:
+
+        raise InternalException("You must supply either a pid or name of the problem.")
+
+    db = api.common.get_conn()
+
+    problem = api.problem.get_problem(name=name, pid=pid)
+
+    return list(db.submissions.find({'pid': problem["pid"], 'correct': True}))
 
 # Stored by the cache_stats daemon
 @api.cache.memoize(timeout=60, fast=True)
