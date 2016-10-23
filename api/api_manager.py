@@ -141,11 +141,6 @@ def add_new_problems(args):
             logging.warning(error)
 
 
-def add_new_achievements(args):
-    if check_files_exist(args.files):
-        insert_objects(api.achievement.insert_achievement, args.files)
-
-
 def load_problems(args):
     problem_dir = args.problems_directory[0]
     grader_dir = args.graders_directory[0]
@@ -247,14 +242,6 @@ def main():
     parser_problems_migrate = subparser_problems.add_parser('migrate', help='Migrate 2013 problems to the new format')
     parser_problems_migrate.add_argument('-o', '--output', action="store", help="Output file.", default=sys.stdout)
     parser_problems_migrate.set_defaults(func=migrate_problems)
-
-    # Achievements
-    parser_achievements = subparser.add_parser('achievements', help='Deal with Achievements')
-    subparser_achievements = parser_achievements.add_subparsers(help='Select one of the following actions')
-
-    parser_achievements_load = subparser_achievements.add_parser('load', help='Load new achievements into the database')
-    parser_achievements_load.add_argument("files", nargs="+", help="Files containing achievements to insert.")
-    parser_achievements_load.set_defaults(func=add_new_achievements)
 
     # Database
     parser_database = subparser.add_parser("database", help="Deal with database")

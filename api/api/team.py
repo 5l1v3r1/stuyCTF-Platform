@@ -154,9 +154,6 @@ def get_team_information(tid=None):
     team_info["competition_active"] = api.utilities.check_competition_active()
     team_info["max_team_size"] = max_team_users
 
-    if api.config.enable_achievements:
-        team_info["achievements"] = api.achievement.get_earned_achievements(tid=tid)
-
     return team_info
 
 def get_all_teams(show_ineligible=False):

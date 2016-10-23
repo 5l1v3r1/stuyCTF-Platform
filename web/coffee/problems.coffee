@@ -1,7 +1,6 @@
 renderProblemList = _.template($("#problem-list-template").remove().text())
 renderProblem = _.template($("#problem-template").remove().text())
 renderProblemSubmit = _.template($("#problem-submit-template").remove().text())
-renderAchievementMessage = _.template($("#achievement-message-template").remove().text())
 
 @ratingMetrics = ["Difficulty", "Enjoyment", "Educational Value"]
 @ratingQuestion = {"Difficulty": "How difficult is this problem?", "Enjoyment": "Did you enjoy this problem?", "Educational Value": "How much did you learn while solving this problem?"}
@@ -12,15 +11,6 @@ renderAchievementMessage = _.template($("#achievement-message-template").remove(
 sanitizeMetricName = (metric) ->
   metric.toLowerCase().replace(" ", "-")
 
-
-constructAchievementCallbackChainHelper = (achievements, index) ->
-  $(".modal-backdrop").remove()
-  if index >= 0
-    messageDialog renderAchievementMessage({achievement: achievements[index]}),
-      "Achievement Unlocked!", "OK", () -> constructAchievementCallbackChainHelper achievements, index-1
-
-constructAchievementCallbackChain = (achievements) ->
-  constructAchievementCallbackChainHelper achievements, achievements.length-1
 
 submitProblem = (e) ->
   e.preventDefault()
@@ -33,11 +23,6 @@ submitProblem = (e) ->
     else
       ga('send', 'event', 'Problem', 'Wrong', 'Basic')
     apiNotify data
-    apiCall "GET", "/api/achievements"
-    .done (data) ->
-      if data['status'] is 1
-        new_achievements = (x for x in data.data when !x.seen)
-        constructAchievementCallbackChain new_achievements
 
 toggleHint = (e) ->
   pid = $(e.target).data("pid")

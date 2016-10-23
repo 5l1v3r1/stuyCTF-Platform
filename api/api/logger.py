@@ -29,11 +29,6 @@ class StatsHandler(logging.StreamHandler):
                 "username": params["username"],
                 "new_team": params["create-new-team"]
             },
-        "api.achievement.process_achievement":
-            lambda aid, data, result=None: {
-                "aid": aid,
-                "success": result[0]
-            },
         "api.autogen.grade_problem_instance":
             lambda pid, tid, key, result=None: {
                 "pid": pid,

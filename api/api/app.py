@@ -26,7 +26,6 @@ import api.routes.stats
 import api.routes.admin
 import api.routes.group
 import api.routes.problem
-import api.routes.achievements
 
 log = api.logger.use(__name__)
 
@@ -54,7 +53,6 @@ def config_app(*args, **kwargs):
     app.register_blueprint(api.routes.admin.blueprint, url_prefix="/api/admin")
     app.register_blueprint(api.routes.group.blueprint, url_prefix="/api/group")
     app.register_blueprint(api.routes.problem.blueprint, url_prefix="/api/problems")
-    app.register_blueprint(api.routes.achievements.blueprint, url_prefix="/api/achievements")
 
     api.logger.setup_logs({"verbose": 2})
     return app

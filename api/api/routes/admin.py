@@ -38,6 +38,24 @@ def get_exceptions_hook():
     except (ValueError, TypeError):
         return WebError("limit is not a valid integer.")
 
+@blueprint.route('/exceptions/dismiss', methods=['POST'])
+@api_wrapper
+@require_admin
+def dismiss_exceptions_hook():
+	trace = request.form.get("trace", None)
+	if trace:
+		api.admin.dismiss_api_exceptions(trace)
+		return WebSuccess(data="Successfuly changed exception visibility.")
+	else:
+		return WebError(message="You must supply a trace to hide.")
+
+@blueprint.route("/problems/submissions", methods=["GET"])
+@api_wrapper
+@require_admin
+def get_problem():
+	submission_data = {p["name"]:api.stats.get_problem_submission_stats(pid=p["pid"]) \
+					   for p in api.problem.get_all_problems(show_disabled=True)}
+	return WebSuccess(data=submission_data)
 
 @blueprint.route("/problems/availability", methods=["POST"])
 @api_wrapper
@@ -58,3 +76,17 @@ def change_problem_availability_hook():
 
     api.admin.set_problem_availability(pid, state)
     return WebSuccess(data="Problem state changed successfully.")
+
+@blueprint.route("/settings", methods=["GET"])
+@api_wrapper
+@require_admin
+def get_settings():
+	return WebSuccess(data=api.config.get_settings())
+
+@blueprint.route("/settings/change", methods=["POST"])
+@api_wrapper
+@require_admin
+def change_settings():
+	data = bson.json_util.loads(request.form["json"])
+	api.config.change_settings(data)
+	return WebSuccess("Settings updated")

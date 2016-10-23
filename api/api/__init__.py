@@ -4,7 +4,6 @@ Imports and setup functionality
 
 import api.logger
 import api.setup
-import api.achievement
 import api.user
 import api.team
 import api.group

@@ -185,10 +185,6 @@ ul#countdown li p {color: #999; font-size: 30%; font-weight: 300;}
 
 /* Team */
 
-.image-achievement {
-    width: 100px;
-}
-
 @media (min-width: 992px) {
     .form-inline .class-class-name {
         width: 160px;

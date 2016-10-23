@@ -17,7 +17,6 @@ cd ${VAGRANT_PATH}/web
 sudo jekyll build
 
 echo "Copying files to server"
-sudo cp -r ${VAGRANT_PATH}/web/build/* /srv/http/ctf/
 mkdir -p ${VAGRANT_PATH}/problem_static
 sudo cp -r ${VAGRANT_PATH}/problem_static /srv/http/ctf/problem-static
 

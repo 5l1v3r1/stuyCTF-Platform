@@ -280,12 +280,6 @@ def get_stats():
     for eventid, count in sorted(get_user_game_progress().items(), key=lambda x: x[0]):
         print("{0:60} {1}".format(eventid, count))
     bar()
-    print("Average Achievement Number:")
-    print("Average Number of Achievements per Team (all teams): %s +/- %s" % get_average_achievement_number())
-    print("Achievement breakdown:")
-    for achievement, count in sorted(get_achievement_frequency().items(), key=lambda x: x[1], reverse=True):
-        print("{0:30} {1}".format(achievement, count))
-    bar()
     print("Average # per category per eligible team")
     for cat, count in get_category_solves().items():
         print("{0:30} {1:.3f}".format(cat, count))
@@ -429,26 +423,6 @@ def get_team_participation_percentage(eligible=True, user_breakdown=None):
         team_size_correct[len(breakdown.keys())].append(count_correct)
     return {x: statistics.mean(y) for x, y in team_size_any.items()}, \
            {x: statistics.mean(y) for x, y in team_size_correct.items()}
-
-
-def get_achievement_frequency():
-    earned_achievements = api.achievement.get_earned_achievement_instances()
-    frequency = defaultdict(int)
-    for achievement in earned_achievements:
-        frequency[achievement['name']] += 1
-    return frequency
-
-
-def get_average_achievement_number():
-    earned_achievements = api.achievement.get_earned_achievement_instances()
-    frequency = defaultdict(int)
-    for achievement in earned_achievements:
-        frequency[achievement['uid']] += 1
-    extra = len(api.team.get_all_teams(show_ineligible=False)) - len(frequency.keys())
-    values = [0] * extra
-    for val in frequency.values():
-        values.append(val)
-    return statistics.mean(values), statistics.stdev(values)
 
 
 def get_category_solves(eligible=True):
