@@ -1,6 +1,7 @@
 .idea
 .vagrant
 web/js/*.js
+web/js/*.map
 web/node_modules/
 web/_site/
 web/build/

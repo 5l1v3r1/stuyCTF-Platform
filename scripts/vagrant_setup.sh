@@ -23,6 +23,7 @@ apt-get -y install php5-cli php5-fpm
 npm install -g coffee-script
 npm install -g react-tools
 npm install -g jsxhint
+npm install -g coffee-react
 
 if [ -d /home/vagrant ]; then
   export VAGRANT_PATH=/home/vagrant

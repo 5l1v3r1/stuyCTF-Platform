@@ -1,6 +1,6 @@
 """ API annotations and assorted wrappers. """
 
-import json, traceback
+import json, traceback, bson
 import api
 
 from api.common import WebSuccess, WebError, WebException, InternalException, SevereInternalException
@@ -68,7 +68,7 @@ def api_wrapper(f):
         except Exception as error:
             wrapper_log.error(traceback.format_exc())
 
-        return json.dumps(web_result)
+        return bson.json_util.dumps(web_result)
 
     return wrapper
 
@@ -126,8 +126,8 @@ def require_admin(f):
 
     @wraps(f)
     def wrapper(*args, **kwds):
-        if not session.get('admin', False):
-            raise WebException("You must be an admin!")
+        if not api.user.is_admin():
+            raise WebException("You do not have permission to view this page.")
         return f(*args, **kwds)
     return wrapper
 

@@ -73,6 +73,16 @@ a.navbar-brand {
     }
 }
 
+.pad {
+    padding: 5px;
+}
+
+@media (max-width: 600px) {
+    #top-team-score-progression-graph {
+        display:none;
+    }
+}
+
 @media (max-width: 767px) {
     .logo {
         padding: 50px 0;

@@ -23,6 +23,9 @@ def get_shell_account_hook():
 @blueprint.route('/create', methods=['POST'])
 @api_wrapper
 def create_user_hook():
+    # This is safe even if the user were to additionally add an admin=true to
+    # the data as create_user_request does not call create_user in such a way
+    # that it could possibly create an admin user.
     new_uid = api.user.create_user_request(api.common.flat_multi(request.form))
     session['uid'] = new_uid
     return WebSuccess("User '{}' registered successfully!".format(request.form["username"]))
@@ -67,7 +70,8 @@ def login_hook():
     username = request.form.get('username')
     password = request.form.get('password')
     api.auth.login(username, password)
-    return WebSuccess(message="Successfully logged in as " + username, data={'teacher': api.user.is_teacher()})
+    return WebSuccess(message="Successfully logged in as " + username,
+                      data={'teacher': api.user.is_teacher(), 'admin': api.user.is_admin()})
 
 @blueprint.route('/logout', methods=['GET'])
 @api_wrapper
@@ -83,7 +87,7 @@ def logout_hook():
 def status_hook():
     status = {
         "logged_in": api.auth.is_logged_in(),
-        "admin": api.auth.is_admin(),
+        "admin": api.user.is_admin(),
         "teacher": api.auth.is_logged_in() and api.user.is_teacher(),
         "enable_teachers": api.config.enable_teachers,
         "shell": api.config.enable_shell,

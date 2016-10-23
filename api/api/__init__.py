@@ -17,6 +17,7 @@ import api.stats
 import api.utilities
 import api.autogen
 import api.autogen_tools
+import api.admin
 
 # MUST BE LAST
 import api.config
