@@ -92,6 +92,8 @@ startup_functions:
                     </li>
                     <li><a href="#problem-hint-tab" data-toggle="tab" class="hint-tab-button">Hint</a>
                     </li>
+                    <li><a href="#problem-solves-tab" data-toggle="tab">Solves</a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="problem-solve-tab">
@@ -112,6 +114,20 @@ startup_functions:
                     </div>
                     <div class="tab-pane" id="problem-hint-tab">
                         <div class="panel-body" id="problem-hint"></div>
+                    </div>
+                    <div class="tab-pane" id="problem-solves-tab">
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="problem-solves">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

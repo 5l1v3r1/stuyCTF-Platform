@@ -210,7 +210,7 @@ def get_top_teams():
 def get_problem_solves(name=None, pid=None):
     """
     Returns the number of solves for a particular problem.
-    Must supply eithe pid or name.
+    Must supply either pid or name.
     Args:
         name: name of the problem
         pid: pid of the problem

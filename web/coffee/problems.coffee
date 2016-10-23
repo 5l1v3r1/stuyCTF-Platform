@@ -16,13 +16,20 @@ updateProblemModal = (pid) ->
   problem = $.grep(problems, (o) ->
     o.pid == pid;
   )[0]
-  $("#problem-title").html(problem.name + " - " + problem.score)
-  $("#problem-description").html(problem.description)
-  $("#problem-hint").html(problem.hint)
-  $("#problem-input").attr("data-pid", problem.pid)
-  disabled = problem.solved ? true : false
-  $("#problem-input").attr("disabled", disabled)
-  $("#problem-submit").attr("disabled", disabled)
+  if problem
+    $("#problem-title").html(problem.name + " - " + problem.score)
+    $("#problem-description").html(problem.description)
+    $("#problem-hint").html(problem.hint)
+    $("#problem-input").attr("data-pid", problem.pid)
+    disabled = problem.solved ? true : false
+    $("#problem-input").attr("disabled", disabled)
+    $("#problem-submit").attr("disabled", disabled)
+    $("#problem-solves").html("")
+    apiCall "GET", "/api/problems/solves", {pid: pid}
+    .done (data) ->
+      if data['status'] is 1
+        for solve in data["data"]
+          $("#problem-solves").append("<tr><td>" + solve["team"] + "</td><td>" + solve["date"] + "</td></tr>")
 
 submitProblem = (e) ->
   e.preventDefault()

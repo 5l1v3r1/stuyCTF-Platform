@@ -25,6 +25,25 @@ def get_unlocked_problems_hook():
 def get_solved_problems_hook():
     return WebSuccess(api.problem.get_solved_problems(api.user.get_user()['tid']))
 
+@blueprint.route('/solves', methods=['GET'])
+@api_wrapper
+@require_login
+@block_before_competition(WebError("The competition has not begun yet!"))
+def get_problem_solves_hook():
+    pid = request.args.get('pid', '')
+
+    solves = api.stats.get_problem_solves(pid=pid)
+    filtered = []
+    for solve in solves:
+        team = api.team.get_team(tid=solve["tid"])["team_name"]
+        date = solve["timestamp"].strftime("%B %d, %Y %I:%M %p")
+        data = {
+            "team": team,
+            "date": date
+        }
+        filtered.append(data)
+    return WebSuccess(data=filtered)
+
 @blueprint.route('/submit', methods=['POST'])
 @api_wrapper
 @check_csrf
