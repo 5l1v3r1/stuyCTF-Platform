@@ -1,6 +1,5 @@
 renderProblemList = _.template($("#problem-list-template").remove().text())
 renderProblem = _.template($("#problem-template").remove().text())
-renderProblemSubmit = _.template($("#problem-submit-template").remove().text())
 
 @ratingMetrics = ["Difficulty", "Enjoyment", "Educational Value"]
 @ratingQuestion = {"Difficulty": "How difficult is this problem?", "Enjoyment": "Did you enjoy this problem?", "Educational Value": "How much did you learn while solving this problem?"}
@@ -11,6 +10,19 @@ renderProblemSubmit = _.template($("#problem-submit-template").remove().text())
 sanitizeMetricName = (metric) ->
   metric.toLowerCase().replace(" ", "-")
 
+problems = {}
+
+updateProblemModal = (pid) ->
+  problem = $.grep(problems, (o) ->
+    o.pid == pid;
+  )[0]
+  $("#problem-title").html(problem.name + " - " + problem.score)
+  $("#problem-description").html(problem.description)
+  $("#problem-hint").html(problem.hint)
+  $("#problem-input").attr("data-pid", problem.pid)
+  disabled = problem.solved ? true : false
+  $("#problem-input").attr("disabled", disabled)
+  $("#problem-submit").attr("disabled", disabled)
 
 submitProblem = (e) ->
   e.preventDefault()
@@ -24,12 +36,6 @@ submitProblem = (e) ->
       ga('send', 'event', 'Problem', 'Wrong', 'Basic')
     apiNotify data
 
-toggleHint = (e) ->
-  pid = $(e.target).data("pid")
-  ga('send', 'event', 'Problem', 'OpenHint', 'Basic')
-  apiCall "GET", "/api/problems/hint", {"pid": pid, "source": "basic"}
-  #$("#"+pid+"-hint").toggle("fast")
-
 loadProblems = ->
   apiCall "GET", "/api/problems"
   .done (data) ->
@@ -37,6 +43,7 @@ loadProblems = ->
       when 0
         apiNotify(data)
       when 1
+        problems = data["data"]
       	# We want the score to be level with the title, but the title
 	# is defined in a template. This solution is therefore a bit
 	# of a hack.
@@ -44,7 +51,6 @@ loadProblems = ->
         $("#problem-list-holder").html renderProblemList({
           problems: data.data,
           renderProblem: renderProblem,
-          renderProblemSubmit: renderProblemSubmit,
           sanitizeMetricName: sanitizeMetricName
         })
 
@@ -53,10 +59,11 @@ loadProblems = ->
 
         $(".problem-hint").hide()
         $(".problem-submit").on "submit", submitProblem
-        $(".info-span").on "click", toggleHint
-        $(".hint-tab-button").on "click", toggleHint
 
         $('[data-toggle="tooltip"]').tooltip()
+
+        $(".problem").on "click", (e) ->
+          updateProblemModal($(this).data("pid"))
 
 addScoreToTitle = (selector) ->
         apiCall "GET", "/api/team/score", {}

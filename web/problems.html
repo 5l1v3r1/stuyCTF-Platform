@@ -42,7 +42,6 @@ startup_functions:
             <% } %>
                 <%= renderProblem({
                 problem: problem,
-                renderProblemSubmit: renderProblemSubmit,
                 sanitizeMetricName: sanitizeMetricName
                 }) %>
             <%
@@ -65,75 +64,60 @@ startup_functions:
     status: problem.solved ? "solved" : "unsolved",
     category: problem.category == "" ? "Miscellaneous" : problem.category
     };
-
-    var pill = {
-    solveId: problem.pid + "solve",
-    hintId: problem.pid + "hint",
-    inputClassName: problem.solved ? " disabled" : ""
-    };
     %>
 
-    <div class="problem <%= panel.className %> <%= panel.status %> col-md-4 col-sm-6" data-toggle="modal" data-target="#<%- problem.pid %>">
+    <div class="problem <%= panel.className %> <%= panel.status %> col-md-4 col-sm-6" data-pid="<%= problem.pid %>" data-toggle="modal" data-target="#problem-modal">
         <table data-toggle="tooltip" data-trigger="hover" title='<%= panel.solves %> <%= panel.solves == 1 ? "solve" : "solves" %>'>
             <td><h4><%- panel.title %></h4></div>
             <td class="points"><%= panel.points %></td>
         </table>
     </div>
 
-    <div class="modal fade" id="<%= problem.pid %>" tabindex="-1" role="dialog" aria-labelledby="<%= problem.pid %>" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"><%- panel.title %> - <%- panel.points %></h3>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#<%= pill.solveId %>" data-toggle="tab">Solve</a>
-                        </li>
-                        <li><a href="#<%= pill.hintId %>" data-toggle="tab" class="hint-tab-button" data-pid="<%= problem.pid %>">Hint</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="<%= pill.solveId %>">
-                            <div class="panel-body">
-                                <%= renderProblemSubmit({
-                                    problem: problem,
-                                    disabled: pill.inputClassName
-                                })%>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="<%= pill.hintId %>">
-                            <div class="panel-body">
-                                <%= problem.hint %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script type="text/template" id="problem-submit-template">
-    <p class="problem-description">
-        <%= problem.description %>
-    </p>
-    <div class="row">
-        <form class="problem-submit">
-            <div class="input-group input-group-sm">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit"<%- disabled %>>Submit!</button>
-                </span>
-                <input type="text" data-pid="<%- problem.pid %>" class="form-control"<%- disabled %>>
-            </div>
-        </form>
-    </div>
 </script>
 
 <div class="container">
     <div id="problem-list-holder"></div>
+</div>
+
+<div class="modal fade" id="problem-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="problem-title"></h3>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#problem-solve-tab" data-toggle="tab">Solve</a>
+                    </li>
+                    <li><a href="#problem-hint-tab" data-toggle="tab" class="hint-tab-button">Hint</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="problem-solve-tab">
+                        <div class="panel-body">
+                            <p class="problem-description" id="problem-description">
+                            </p>
+                            <div class="row">
+                                <form class="problem-submit">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="submit" id="problem-submit">Submit!</button>
+                                        </span>
+                                        <input type="text" class="form-control" id="problem-input">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="problem-hint-tab">
+                        <div class="panel-body" id="problem-hint"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
