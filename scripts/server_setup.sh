@@ -1,16 +1,18 @@
 #!/bin/bash
 
+export VAGRANT_PATH=/home/vagrant
+
 # Must run setup as root
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run the setup script as root." ; exit 1 ; fi
 
 # Mimic Vagrant Development environment
 if [[ $(pwd) == *"/scripts" ]]; then
-    mkdir -p /home/vagrant
+    mkdir -p ${VAGRANT_PATH}
     cd ..
-    ln -s $(pwd)/api /home/vagrant
-    ln -s $(pwd)/web /home/vagrant
-    ln -s $(pwd)/scripts /home/vagrant
-    ln -s $(pwd)/config /home/vagrant
+    ln -s $(pwd)/api ${VAGRANT_PATH}
+    ln -s $(pwd)/web ${VAGRANT_PATH}
+    ln -s $(pwd)/scripts ${VAGRANT_PATH}
+    ln -s $(pwd)/config ${VAGRANT_PATH}
 else
     echo "Server setup script must be run in the stuyCTF-Platform/scripts folder!"
     exit
@@ -39,17 +41,19 @@ apt-get -y install php5-cli php5-fpm
 npm install -g coffee-script
 npm install -g react-tools
 npm install -g jsxhint
+npm install -g coffee-react
 
-pip3 install -r /home/vagrant/api/requirements.txt
+pip3 install -r ${VAGRANT_PATH}/api/requirements.txt
 
 # Jekyll
-gem install jekyll
+gem install jekyll -v 2.5.3
 
 # Configure Environment
-echo 'PATH=$PATH:/home/vagrant/scripts' >> /etc/profile
+echo "PATH=$PATH:${VAGRANT_PATH}/scripts" >> /etc/profile
+echo "export VAGRANT_PATH=${VAGRANT_PATH}" >> /etc/profile
 
 # Configure Nginx
-cp /home/vagrant/config/ctf.nginx /etc/nginx/sites-enabled/ctf
+cp ${VAGRANT_PATH}/config/ctf.nginx /etc/nginx/sites-enabled/ctf
 rm /etc/nginx/sites-enabled/default
 mkdir -p /srv/http/ctf
 mkdir -p /src/http/php
