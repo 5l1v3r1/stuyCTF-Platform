@@ -6,6 +6,7 @@ Note this is just a python script. It does config things.
 
 import api
 import datetime
+import os
 
 import api.app
 
@@ -16,7 +17,14 @@ api.app.session_cookie_path = "/"
 api.app.session_cookie_name = "flask"
 
 # KEEP THIS SECRET
-api.app.secret_key = "MuchSecretSuchSecret"
+with open(".secret_key", "a+b") as f:
+    secret_key = f.read()
+    if not secret_key:
+        secret_key = os.urandom(64)
+        f.write(secret_key)
+        f.flush()
+    api.app.secret_key = secret_key
+    f.close()
 
 """ SECURITY """
 

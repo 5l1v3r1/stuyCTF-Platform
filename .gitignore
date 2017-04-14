@@ -8,6 +8,7 @@ web/build/
 web/_includes/analytics.html
 api/graders/autogentest/instances/*
 api/graders/*
+.secret_key
 
 problems/*
 problem_static
